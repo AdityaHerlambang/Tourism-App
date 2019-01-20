@@ -24,8 +24,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         IMAGE_RESOUCE = new Integer[]{
-                R.drawable.hongkong,
-                R.drawable.kota
+                R.drawable.dashboard_header1,
+                R.drawable.dashboard_header2,
+                R.drawable.dashboard_header3,
         };
 
         initializeKenBurnsView();
