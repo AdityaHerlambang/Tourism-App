@@ -14,7 +14,7 @@ import android.os.Build;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 
-import com.lakista.jembrana.R;
+import com.artace.tourism.R;
 
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
