@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <dimen name="category_fontsize">10sp</dimen>
+
     <dimen name="main_card_size">110dp</dimen>
     <dimen name="main_card_size_big">130dp</dimen>
     <dimen name="album_title_padding">2dp</dimen>

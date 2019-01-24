@@ -34,6 +34,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="-12dp"
                         android:fontFamily="@font/poppins"
                         android:text="Host to Host Tour"
                         android:textColor="@color/colorSecondaryText"
@@ -53,7 +54,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="18dp"
                 android:orientation="vertical">
 
                 <android.support.v7.widget.CardView
@@ -181,20 +182,25 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <LinearLayout
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
                         <LinearLayout
-                            android:layout_marginLeft="24dp"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_weight="25"
                             android:layout_height="wrap_content"
                             android:padding="4dp"
                             android:orientation="vertical">
                             <android.support.design.widget.FloatingActionButton
                                 app:backgroundTint="@color/colorSecondaryText"
                                 android:src="@drawable/farmer"
+                                android:layout_gravity="center_horizontal"
                                 app:borderWidth="0dp"
-                                app:elevation="4dp"
+                                app:elevation="2dp"
                                 android:layout_width="69dp"
                                 android:layout_height="71dp"/>
                             <TextView
@@ -204,12 +210,203 @@
                                 android:text="Agriculture"
                                 android:textColor="#000"
                                 android:textAlignment="center"
-                                android:textSize="12sp"
+                                android:textSize="@dimen/category_fontsize"
                                 android:textStyle="normal"/>
                         </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="25"
+                            android:layout_height="wrap_content"
+                            android:padding="4dp"
+                            android:orientation="vertical">
+                            <android.support.design.widget.FloatingActionButton
+                                app:backgroundTint="@color/colorSecondaryText"
+                                android:src="@drawable/dance"
+                                android:layout_gravity="center_horizontal"
+                                app:borderWidth="0dp"
+                                app:elevation="2dp"
+                                android:layout_width="69dp"
+                                android:layout_height="71dp"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins"
+                                android:text="Dance | Music"
+                                android:textColor="#000"
+                                android:textAlignment="center"
+                                android:textSize="@dimen/category_fontsize"
+                                android:textStyle="normal"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="25"
+                            android:layout_height="wrap_content"
+                            android:padding="4dp"
+                            android:orientation="vertical">
+                            <android.support.design.widget.FloatingActionButton
+                                app:backgroundTint="@color/colorSecondaryText"
+                                android:src="@drawable/food"
+                                android:layout_gravity="center_horizontal"
+                                app:borderWidth="0dp"
+                                app:elevation="2dp"
+                                android:layout_width="69dp"
+                                android:layout_height="71dp"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins"
+                                android:text="Cook | Food"
+                                android:textColor="#000"
+                                android:textAlignment="center"
+                                android:textSize="@dimen/category_fontsize"
+                                android:textStyle="normal"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="25"
+                            android:layout_height="wrap_content"
+                            android:padding="4dp"
+                            android:orientation="vertical">
+                            <android.support.design.widget.FloatingActionButton
+                                app:backgroundTint="@color/colorSecondaryText"
+                                android:src="@drawable/handycraft"
+                                android:layout_gravity="center_horizontal"
+                                app:borderWidth="0dp"
+                                app:elevation="2dp"
+                                android:layout_width="69dp"
+                                android:layout_height="71dp"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins"
+                                android:text="Handycraft"
+                                android:textColor="#000"
+                                android:textAlignment="center"
+                                android:textSize="@dimen/category_fontsize"
+                                android:textStyle="normal"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="25"
+                            android:layout_height="wrap_content"
+                            android:padding="4dp"
+                            android:orientation="vertical">
+                            <android.support.design.widget.FloatingActionButton
+                                app:backgroundTint="@color/colorSecondaryText"
+                                android:src="@drawable/it"
+                                android:layout_gravity="center_horizontal"
+                                app:borderWidth="0dp"
+                                app:elevation="2dp"
+                                android:layout_width="69dp"
+                                android:layout_height="71dp"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins"
+                                android:text="IT | Design"
+                                android:textColor="#000"
+                                android:textAlignment="center"
+                                android:textSize="@dimen/category_fontsize"
+                                android:textStyle="normal"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="25"
+                            android:layout_height="wrap_content"
+                            android:padding="4dp"
+                            android:orientation="vertical">
+                            <android.support.design.widget.FloatingActionButton
+                                app:backgroundTint="@color/colorSecondaryText"
+                                android:src="@drawable/herd"
+                                android:layout_gravity="center_horizontal"
+                                app:borderWidth="0dp"
+                                app:elevation="2dp"
+                                android:layout_width="69dp"
+                                android:layout_height="71dp"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins"
+                                android:text="Herds"
+                                android:textColor="#000"
+                                android:textAlignment="center"
+                                android:textSize="@dimen/category_fontsize"
+                                android:textStyle="normal"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="25"
+                            android:layout_height="wrap_content"
+                            android:padding="4dp"
+                            android:orientation="vertical">
+                            <android.support.design.widget.FloatingActionButton
+                                app:backgroundTint="@color/colorSecondaryText"
+                                android:src="@drawable/design"
+                                android:layout_gravity="center_horizontal"
+                                app:borderWidth="0dp"
+                                app:elevation="2dp"
+                                android:layout_width="69dp"
+                                android:layout_height="71dp"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins"
+                                android:text="Community Design"
+                                android:textColor="#000"
+                                android:textAlignment="center"
+                                android:textSize="@dimen/category_fontsize"
+                                android:textStyle="normal"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="25"
+                            android:layout_height="wrap_content"
+                            android:padding="4dp"
+                            android:orientation="vertical">
+                            <android.support.design.widget.FloatingActionButton
+                                app:backgroundTint="@color/colorSecondaryText"
+                                android:src="@drawable/travel"
+                                android:layout_gravity="center_horizontal"
+                                app:borderWidth="0dp"
+                                app:elevation="2dp"
+                                android:layout_width="69dp"
+                                android:layout_height="71dp"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins"
+                                android:text="Others"
+                                android:textColor="#000"
+                                android:textAlignment="center"
+                                android:textSize="@dimen/category_fontsize"
+                                android:textStyle="normal"/>
+                        </LinearLayout>
+
                     </LinearLayout>
                 </LinearLayout>
-
 
             </LinearLayout>
 
@@ -217,6 +414,7 @@
                 android:id="@+id/view_pager_frame"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
+
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 

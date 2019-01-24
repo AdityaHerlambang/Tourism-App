@@ -2,7 +2,8 @@
 <resources>
     <color name="colorPrimary">#fafafa</color>
     <color name="colorPrimaryLight">#ffffff</color>
-    <color name="colorPrimaryDark">#c7c7c7</color>
+    <!--<color name="colorPrimaryDark">#c7c7c7</color>-->
+    <color name="colorPrimaryDark">#000000</color>
     <color name="colorPrimaryText">#000000</color>
     <color name="colorSecondaryText">#ffffff</color>
     <color name="colorAccent">#536DFE</color>

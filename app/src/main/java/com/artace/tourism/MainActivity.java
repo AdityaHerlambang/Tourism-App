@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.dashboard_header2,
                 R.drawable.dashboard_header3,
         };
-
         initializeKenBurnsView();
     }
 
@@ -40,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         // File path, or a uri or url
         List<Integer> urls = Arrays.asList(IMAGE_RESOUCE);
         kenBurnsView.initResourceIDs(urls);
-
 
         // ResourceID
         //List<Integer> resourceIDs = Arrays.asList(SampleImages.IMAGES_RESOURCE);
