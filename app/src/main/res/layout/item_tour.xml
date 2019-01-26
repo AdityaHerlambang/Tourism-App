@@ -30,7 +30,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/item_category_imageCategory"
+                android:id="@+id/item_tour_imageCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="225dp"
                 android:background="@drawable/hongkong"
@@ -39,7 +39,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/item_category_nama"
+                android:id="@+id/item_tour_nama"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -52,10 +52,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/item_category_imageCategory" />
+                app:layout_constraintTop_toBottomOf="@+id/item_tour_imageCategory" />
 
             <TextView
-                android:id="@+id/item_category_lokasi"
+                android:id="@+id/item_tour_lokasi"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -69,10 +69,10 @@
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/item_category_nama" />
+                app:layout_constraintTop_toBottomOf="@+id/item_tour_nama" />
 
             <TextView
-                android:id="@+id/item_category_shortDesc"
+                android:id="@+id/item_tour_shortDesc"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -82,7 +82,7 @@
                 android:text="short desc"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/item_category_lokasi" />
+                app:layout_constraintTop_toBottomOf="@+id/item_tour_lokasi" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -92,8 +92,8 @@
                 android:fontFamily="@font/poppins"
                 android:text="Start from"
                 app:layout_constraintEnd_toStartOf="@+id/textView8"
-                app:layout_constraintStart_toStartOf="@+id/item_category_shortDesc"
-                app:layout_constraintTop_toBottomOf="@+id/item_category_shortDesc" />
+                app:layout_constraintStart_toStartOf="@+id/item_tour_shortDesc"
+                app:layout_constraintTop_toBottomOf="@+id/item_tour_shortDesc" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -106,22 +106,22 @@
                 android:textAlignment="textEnd"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView7"
-                app:layout_constraintTop_toBottomOf="@+id/item_category_shortDesc" />
+                app:layout_constraintTop_toBottomOf="@+id/item_tour_shortDesc" />
 
             <TextView
-                android:id="@+id/item_category_hargaMinimum"
+                android:id="@+id/item_tour_hargaMinimum"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
                 android:text="Rp. 547.104"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/item_category_duration"
+                app:layout_constraintEnd_toStartOf="@+id/item_tour_duration"
                 app:layout_constraintStart_toStartOf="@+id/textView7"
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <TextView
-                android:id="@+id/item_category_duration"
+                android:id="@+id/item_tour_duration"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
@@ -130,7 +130,7 @@
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView8"
-                app:layout_constraintStart_toEndOf="@+id/item_category_hargaMinimum"
+                app:layout_constraintStart_toEndOf="@+id/item_tour_hargaMinimum"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
         </android.support.constraint.ConstraintLayout>

@@ -31,4 +31,5 @@ public class DatabaseConnection {
     public static String getAllCountries() {
         return allCountries;
     }
+
 }
