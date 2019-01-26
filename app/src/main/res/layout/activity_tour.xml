@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CategoryActivity">
+    tools:context=".TourActivity">
 
 
     <android.support.design.widget.AppBarLayout
@@ -49,17 +49,16 @@
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
                 android:layout_marginTop="350dp"
                 android:layout_marginEnd="24dp"
-                android:layout_marginRight="24dp"
                 android:background="@drawable/input_box"
-                android:elevation="2dp"
+                android:elevation="3dp"
                 android:ems="8"
+                android:drawableLeft="@drawable/ic_search"
                 android:fontFamily="@font/poppins"
                 android:inputType="textPersonName"
+                android:hint="Search Tour"
                 android:paddingLeft="8dp"
-                android:text="Name"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -107,7 +106,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraintLayout3"
                 android:layout_width="match_parent"
-                android:layout_height="1750dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -129,7 +128,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerView"
+                    android:id="@+id/activity_category_recyclerTour"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"

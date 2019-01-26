@@ -14,15 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:replace="android:icon">
-        <activity android:name=".CategoryActivity">
-
-        </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".TourActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <tour android:name="android.intent.tour.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity">
+
         </activity>
 
         <meta-data
