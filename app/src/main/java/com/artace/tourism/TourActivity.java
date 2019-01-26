@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -16,7 +17,7 @@ import android.widget.ImageView;
 import com.android.volley.Request;
 import com.artace.tourism.adapter.TourAdapter;
 import com.artace.tourism.connection.DatabaseConnection;
-import com.artace.tourism.model.Tour;
+import com.artace.tourism.model.ModelTour;
 import com.artace.tourism.utils.StringPostRequest;
 import com.artace.tourism.utils.VolleyResponseListener;
 
@@ -33,12 +34,12 @@ import java.util.Map;
 public class TourActivity extends AppCompatActivity{
 
     NestedScrollView mScroller;
-    String TAG = "Tour";
+    String TAG = "ModelTour";
     Toolbar mToolbar;
     ImageView mImage;
     AppBarLayout mAppBar;
     private RecyclerView mList;
-    private List<Tour> tourList;
+    private List<ModelTour> modelTourList;
     private RecyclerView.Adapter adapter;
 
     String CATEGORY = "2";
@@ -55,20 +56,20 @@ public class TourActivity extends AppCompatActivity{
         tipe = intent.getStringExtra("tipe");
         id = intent.getStringExtra("id");
 
-        mScroller = (NestedScrollView) findViewById(R.id.activity_category_nestedScrollView);
-        mToolbar = (Toolbar) findViewById(R.id.activity_category_toolbar);
-        mImage = (ImageView) findViewById(R.id.activity_category_imageHeader);
-        mAppBar = (AppBarLayout) findViewById(R.id.activity_category_appBarLayout);
-        mList = (RecyclerView) findViewById(R.id.activity_category_recyclerTour);
-
-        tourList = new ArrayList<>();
-        adapter = new TourAdapter(getApplicationContext(), tourList);
+        mScroller = (NestedScrollView) findViewById(R.id.activity_tour_nestedScrollView);
+        mToolbar = (Toolbar) findViewById(R.id.activity_tour_toolbar);
+        mImage = (ImageView) findViewById(R.id.activity_tour_imageHeader);
+        mAppBar = (AppBarLayout) findViewById(R.id.activity_tour_appBarLayout);
+        mList = (RecyclerView) findViewById(R.id.activity_tour_recyclerTour);
+        mList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        modelTourList = new ArrayList<ModelTour>();
+        adapter = new TourAdapter(getApplicationContext(), modelTourList);
 
         mList.setAdapter(adapter);
 
         loadData();
 
-        mToolbar.setTitle("Tour");
+        mToolbar.setTitle("ModelTour");
         setSupportActionBar(mToolbar);
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -177,20 +178,20 @@ public class TourActivity extends AppCompatActivity{
                                 JSONObject obj = jsonArray.getJSONObject(i);
                                 Log.d(TAG,"RESPONSE = "+obj.toString());
 
-                                Tour tour = new Tour();
-                                tour.setNama(obj.getString("name"));
-                                tour.setImageCategory(obj.getString("image"));
-                                tour.setShortDesc(obj.getString("description"));
+                                ModelTour modelTour = new ModelTour();
+                                modelTour.setName(obj.getString("name"));
+                                modelTour.setImage(obj.getString("image"));
+                                modelTour.setShort_description(obj.getString("short_description"));
                                 if (obj.getString("duration_day") == null){
-                                    tour.setDurasi(obj.getString("duration_day"));
+                                    modelTour.setDuration_day(obj.getInt("duration_hour"));
                                 }
                                 else if (obj.getString("duration_hour") == null){
-                                    tour.setDurasi(obj.getString("duration_hour"));
+                                    modelTour.setDuration_hour(obj.getInt("duration_day"));
                                 }
-                                tour.setHarga(obj.getString("price"));
-                                tour.setLokasi(obj.getString("lokasi"));
+                                modelTour.setAdult_price(obj.getInt("adult_price"));
+                                modelTour.setLocation(obj.getString("location"));
 
-                                tourList.add(tour);
+                                modelTourList.add(modelTour);
                             } catch (Exception e) {
                                 Log.e(TAG,e.getMessage());
                             }
@@ -214,8 +215,9 @@ public class TourActivity extends AppCompatActivity{
 
     private void loadData(){
         Map<String,String> params = new HashMap<String, String>();
+        params.put("emptyvalue","emptyvalue");
         Log.d(TAG,params.toString());
-        String url = DatabaseConnection.TOUR_URL;
+        String url = DatabaseConnection.getTourUrl();
         if (tipe == COUNTRY){
             url = DatabaseConnection.getCountryUrl(id);
         }
@@ -237,23 +239,31 @@ public class TourActivity extends AppCompatActivity{
                                 JSONObject obj = jsonArray.getJSONObject(i);
                                 Log.d(TAG,"RESPONSE = "+obj.toString());
 
-                                Tour tour = new Tour();
-                                tour.setNama(obj.getString("name"));
-                                tour.setImageCategory(obj.getString("image"));
-                                tour.setShortDesc(obj.getString("description"));
-                                tour.setDurasi(obj.getString("durasi"));
-                                tour.setHarga(obj.getString("price"));
-                                tour.setLokasi(obj.getString("lokasi"));
-
-                                tourList.add(tour);
+                                ModelTour modelTour = new ModelTour();
+                                modelTour.setName(obj.getString("name"));
+                                modelTour.setImage(obj.getString("image"));
+                                modelTour.setShort_description(obj.getString("short_description"));
+                                if (obj.getString("duration_day") == null){
+                                    modelTour.setDuration_day(obj.getInt("duration_hour"));
+                                }
+                                else if (obj.getString("duration_hour") == null){
+                                    modelTour.setDuration_hour(obj.getInt("duration_day"));
+                                }
+                                modelTour.setAdult_price(obj.getInt("adult_price"));
+                                modelTour.setLocation(obj.getString("location"));
+                                modelTourList.add(modelTour);
                             } catch (Exception e) {
                                 Log.e(TAG,e.getMessage());
+                            }
+                            finally {
+                                //Notify adapter about data changes
+                                adapter.notifyItemChanged(i);
                             }
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
+                        Log.e(TAG,"2 = " + e.getMessage().toString());
                     }
-                    adapter.notifyDataSetChanged();
                 }catch(JSONException e){
                     e.printStackTrace();
                 }
@@ -261,7 +271,7 @@ public class TourActivity extends AppCompatActivity{
 
             @Override
             public void onError(String message) {
-
+                loadData();
                 Log.e(TAG,"Ada ERROR : "+message);
             }
         });

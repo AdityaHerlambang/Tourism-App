@@ -16,6 +16,9 @@ public class ModelTour {
     int duration_hour;
     int duration_day;
 
+    public ModelTour() {
+    }
+
     public ModelTour(String id, String country_id, String tour_provider_id, String name, String location, String short_description, String overview, String activity, int minimum_person, String preparation, String image, String location_latitude, String location_longitude, String nearest_airport, int verified_by_admin, double adult_price, double child_price, int max_capacity, int duration_hour, int duration_day) {
         this.id = id;
         this.country_id = country_id;

@@ -8,9 +8,9 @@
 
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/activity_tour_appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/activity_category_appBarLayout"
         android:background="@null"
         android:elevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,25 +18,25 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/activity_category_toolbar"
+            android:id="@+id/activity_tour_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:layout_scrollFlags="enterAlways"
-            android:theme="@style/CustomActionBar"/>
+            android:theme="@style/CustomActionBar"
+            app:layout_scrollFlags="enterAlways" />
     </android.support.design.widget.AppBarLayout>
 
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/activity_tour_nestedScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/activity_category_nestedScrollView">
+        android:layout_height="match_parent">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/activity_category_imageHeader"
+                android:id="@+id/activity_tour_imageHeader"
                 android:layout_width="0dp"
                 android:layout_height="370dp"
                 android:background="@drawable/hongkong_vertical"
@@ -45,19 +45,19 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/activity_category_searchCategory"
+                android:id="@+id/activity_tour_searchTour"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="350dp"
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/input_box"
+                android:drawableLeft="@drawable/ic_search"
                 android:elevation="3dp"
                 android:ems="8"
-                android:drawableLeft="@drawable/ic_search"
                 android:fontFamily="@font/poppins"
+                android:hint="Search ModelTour"
                 android:inputType="textPersonName"
-                android:hint="Search Tour"
                 android:paddingLeft="8dp"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +72,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activity_category_searchCategory">
+                app:layout_constraintTop_toBottomOf="@+id/activity_tour_searchTour">
 
                 <TextView
                     android:id="@+id/textView2"
@@ -81,7 +81,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginLeft="24dp"
                     android:fontFamily="@font/poppins"
-                    android:text="Popular Tour"
+                    android:text="Popular ModelTour"
                     android:textColor="#000"
                     android:textSize="18sp"
                     android:textStyle="normal"
@@ -120,7 +120,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginLeft="24dp"
                     android:fontFamily="@font/poppins"
-                    android:text="Tour"
+                    android:text="ModelTour"
                     android:textColor="#000"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -128,7 +128,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/activity_category_recyclerTour"
+                    android:id="@+id/activity_tour_recyclerTour"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
@@ -153,10 +153,10 @@
                 android:text="Hongkong"
                 android:textColor="#fff"
                 android:textSize="40sp"
-                app:layout_constraintBottom_toBottomOf="@+id/activity_category_imageHeader"
+                app:layout_constraintBottom_toBottomOf="@+id/activity_tour_imageHeader"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/activity_category_imageHeader" />
+                app:layout_constraintTop_toTopOf="@+id/activity_tour_imageHeader" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>

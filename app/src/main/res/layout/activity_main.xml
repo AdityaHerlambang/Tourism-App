@@ -36,7 +36,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="-12dp"
                         android:fontFamily="@font/poppins"
-                        android:text="Host to Host Tour"
+                        android:text="Host to Host ModelTour"
                         android:textColor="@color/colorSecondaryText"
                         android:textSize="28sp"
                         android:textStyle="bold" />
@@ -44,7 +44,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins"
-                        android:text="Experience Tour Deeper than Ever"
+                        android:text="Experience ModelTour Deeper than Ever"
                         android:textColor="@color/colorSecondaryText"
                         android:textSize="18sp"
                         android:textStyle="normal" />
@@ -93,7 +93,7 @@
                                     android:layout_marginLeft="4dp"
                                     android:layout_marginTop="8dp"
                                     android:layout_marginBottom="4dp"
-                                    android:text="Learn More About \nHost to Host Tour"
+                                    android:text="Learn More About \nHost to Host ModelTour"
                                     android:textAlignment="center"
                                     android:textColor="@color/colorSecondaryText"
                                     android:textSize="12sp"
