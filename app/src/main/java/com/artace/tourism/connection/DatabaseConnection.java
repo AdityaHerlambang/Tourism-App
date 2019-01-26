@@ -21,4 +21,14 @@ public class DatabaseConnection {
     public static String getCategoryUrl(String id) {
         return CATEGORY_URL+"/"+id;
     }
+
+    public static String allCountries = BASE_URL+"country/allcountry";
+
+    public static String getBaseUrl() {
+        return BASE_URL;
+    }
+
+    public static String getAllCountries() {
+        return allCountries;
+    }
 }
