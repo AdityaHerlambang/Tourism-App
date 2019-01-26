@@ -54,11 +54,11 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.ViewHolder> {
         public ViewHolder(View itemView) {
             super(itemView);
 
-            mNama = itemView.findViewById(R.id.item_category_nama);
-            mLokasi = itemView.findViewById(R.id.item_category_lokasi);
-            mShortDesc = itemView.findViewById(R.id.item_category_shortDesc);
-            durasi = itemView.findViewById(R.id.item_category_duration);
-            harga = itemView.findViewById(R.id.item_category_hargaMinimum);
+            mNama = itemView.findViewById(R.id.item_tour_nama);
+            mLokasi = itemView.findViewById(R.id.item_tour_lokasi);
+            mShortDesc = itemView.findViewById(R.id.item_tour_shortDesc);
+            durasi = itemView.findViewById(R.id.item_tour_duration);
+            harga = itemView.findViewById(R.id.item_tour_hargaMinimum);
             imageCategory = itemView.findViewById(R.id.activity_category_imageHeader);
 
         }
