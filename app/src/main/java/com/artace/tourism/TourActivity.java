@@ -39,7 +39,7 @@ public class TourActivity extends AppCompatActivity{
     ImageView mImage;
     AppBarLayout mAppBar;
     private RecyclerView mList;
-    private List<ModelTour> modelTourList;
+    private List<ModelTour> modelTourList = new ArrayList<ModelTour>();
     private RecyclerView.Adapter adapter;
 
     String CATEGORY = "2";
@@ -60,11 +60,10 @@ public class TourActivity extends AppCompatActivity{
         mToolbar = (Toolbar) findViewById(R.id.activity_tour_toolbar);
         mImage = (ImageView) findViewById(R.id.activity_tour_imageHeader);
         mAppBar = (AppBarLayout) findViewById(R.id.activity_tour_appBarLayout);
-        mList = (RecyclerView) findViewById(R.id.activity_tour_recyclerTour);
-        mList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        modelTourList = new ArrayList<ModelTour>();
-        adapter = new TourAdapter(getApplicationContext(), modelTourList);
 
+        mList = (RecyclerView) findViewById(R.id.activity_tour_recyclerTour);
+        adapter = new TourAdapter(this, modelTourList);
+        mList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mList.setAdapter(adapter);
 
         loadData();
@@ -149,124 +148,53 @@ public class TourActivity extends AppCompatActivity{
         return true;
     }
 
-    private void searchData(String search){
-        Map<String,String> params = new HashMap<String, String>();
-        if (tipe == COUNTRY){
-            params.put("country",id);
-            params.put("category",search);
-        }
-        if (tipe == CATEGORY){
-            params.put("category",id);
-            params.put("country",search);
-        }
-
-        Log.d(TAG,params.toString());
-        String url = DatabaseConnection.TOUR_URL;
-
-        Log.d(TAG,url);
-
-        StringPostRequest strReq = new StringPostRequest();
-
-        strReq.sendRequest(Request.Method.POST,this, params, url, new VolleyResponseListener() {
-            @Override
-            public void onResponse(String response) {
-                try{
-                    JSONArray jsonArray = new JSONArray(response);
-                    try {
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            try {
-                                JSONObject obj = jsonArray.getJSONObject(i);
-                                Log.d(TAG,"RESPONSE = "+obj.toString());
-
-                                ModelTour modelTour = new ModelTour();
-                                modelTour.setName(obj.getString("name"));
-                                modelTour.setImage(obj.getString("image"));
-                                modelTour.setShort_description(obj.getString("short_description"));
-                                if (obj.getString("duration_day") == null){
-                                    modelTour.setDuration_day(obj.getInt("duration_hour"));
-                                }
-                                else if (obj.getString("duration_hour") == null){
-                                    modelTour.setDuration_hour(obj.getInt("duration_day"));
-                                }
-                                modelTour.setAdult_price(obj.getInt("adult_price"));
-                                modelTour.setLocation(obj.getString("location"));
-
-                                modelTourList.add(modelTour);
-                            } catch (Exception e) {
-                                Log.e(TAG,e.getMessage());
-                            }
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    adapter.notifyDataSetChanged();
-                }catch(JSONException e){
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onError(String message) {
-
-                Log.e(TAG,"Ada ERROR : "+message);
-            }
-        });
-    }
-
     private void loadData(){
         Map<String,String> params = new HashMap<String, String>();
         params.put("emptyvalue","emptyvalue");
         Log.d(TAG,params.toString());
-        String url = DatabaseConnection.getTourUrl();
-        if (tipe == COUNTRY){
-            url = DatabaseConnection.getCountryUrl(id);
-        }
-        if (tipe == CATEGORY){
-            url = DatabaseConnection.getCategoryUrl(id);
-        }
 
+        String url = DatabaseConnection.getTourUrl();
         Log.d(TAG,url);
 
         StringPostRequest strReq = new StringPostRequest();
         strReq.sendRequest(Request.Method.GET,this, params, url, new VolleyResponseListener() {
             @Override
             public void onResponse(String response) {
+
                 try{
                     JSONArray jsonArray = new JSONArray(response);
                     try {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             try {
                                 JSONObject obj = jsonArray.getJSONObject(i);
-                                Log.d(TAG,"RESPONSE = "+obj.toString());
 
                                 ModelTour modelTour = new ModelTour();
                                 modelTour.setName(obj.getString("name"));
                                 modelTour.setImage(obj.getString("image"));
                                 modelTour.setShort_description(obj.getString("short_description"));
-                                if (obj.getString("duration_day") == null){
-                                    modelTour.setDuration_day(obj.getInt("duration_hour"));
-                                }
-                                else if (obj.getString("duration_hour") == null){
-                                    modelTour.setDuration_hour(obj.getInt("duration_day"));
-                                }
+                                modelTour.setDuration_day(obj.getInt("duration_hour"));
+                                modelTour.setDuration_hour(obj.getInt("duration_day"));
+
                                 modelTour.setAdult_price(obj.getInt("adult_price"));
                                 modelTour.setLocation(obj.getString("location"));
                                 modelTourList.add(modelTour);
+
+                                Log.e("sdf",obj.toString());
+
                             } catch (Exception e) {
                                 Log.e(TAG,e.getMessage());
-                            }
-                            finally {
+                            }finally {
                                 //Notify adapter about data changes
                                 adapter.notifyItemChanged(i);
                             }
                         }
                     } catch (Exception e) {
-                        e.printStackTrace();
                         Log.e(TAG,"2 = " + e.getMessage().toString());
                     }
                 }catch(JSONException e){
                     e.printStackTrace();
                 }
+
             }
 
             @Override
@@ -275,5 +203,16 @@ public class TourActivity extends AppCompatActivity{
                 Log.e(TAG,"Ada ERROR : "+message);
             }
         });
+
+
+
+//        if (tipe == COUNTRY){
+//            url = DatabaseConnection.getCountryUrl(id);
+//        }
+//        if (tipe == CATEGORY){
+//            url = DatabaseConnection.getCategoryUrl(id);
+//        }
+
+        Log.d(TAG,url);
     }
 }

@@ -32,22 +32,22 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.MyViewHolder> 
     }
 
     @Override
-    public TourAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View rootView = inflater.inflate(R.layout.item_tour, parent, false);
-        return new TourAdapter.MyViewHolder(rootView);
+        return new MyViewHolder(rootView);
 
     }
 
     @Override
-    public void onBindViewHolder(TourAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, int position) {
         data = dataList.get(position);
 
         holder.mNama.setText(data.getName());
         holder.mLokasi.setText(data.getLocation());
         holder.mShortDesc.setText(data.getShort_description());
         holder.harga.setText(Double.toString(data.getAdult_price()));
-        holder.durasi.setText(data.getDuration_day());
+        holder.durasi.setText(Integer.toString(data.getDuration_day()));
 
         Picasso.with(context)
                 .load(data.getImage())
@@ -65,8 +65,6 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.MyViewHolder> 
         });
 
     }
-
-
 
     @Override
     public int getItemCount() {
