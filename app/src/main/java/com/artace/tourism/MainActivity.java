@@ -100,7 +100,12 @@ public class MainActivity extends AppCompatActivity {
                             try {
                                 JSONObject obj = jsonArray.getJSONObject(i);
 
-                                ModelCountry data = new ModelCountry(obj.getString("id"),obj.getString("country_code"),obj.getString("name"),obj.getString("image"));
+                                ModelCountry data = new ModelCountry(
+                                        obj.getString("id"),
+                                        obj.getString("country_code"),
+                                        obj.getString("name"),
+                                        obj.getString("image")
+                                );
 
                                 dataList.add(data);
 
@@ -112,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     } catch (Exception e) {
-                        Log.e(TAG,"2 = " + e.getMessage().toString());
+                        Log.e(TAG,"2 = " + e.getMessage());
                     }
                 }catch(JSONException e){
                     e.printStackTrace();
