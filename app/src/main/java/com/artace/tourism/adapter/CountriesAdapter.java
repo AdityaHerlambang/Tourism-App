@@ -1,6 +1,7 @@
 package com.artace.tourism.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.artace.tourism.MainActivity;
 import com.artace.tourism.R;
+import com.artace.tourism.TourActivity;
 import com.artace.tourism.model.ModelCountry;
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
@@ -71,9 +73,14 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.MyVi
                 data = dataList.get((int) view.getTag());
 
                 //TODO: Intent ke halaman country
+                Intent intent = new Intent(context, TourActivity.class); // gets the previously created intent
+                intent.putExtra("tipe", "1");
+                intent.putExtra("id", data.getId());
+                intent.putExtra("name",data.getName());
+                intent.putExtra("image", data.getImage());
+                context.startActivity(intent);
             }
         });
-
     }
 
 

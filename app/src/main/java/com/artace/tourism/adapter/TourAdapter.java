@@ -8,11 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.artace.tourism.R;
 import com.artace.tourism.model.ModelTour;
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 public class TourAdapter extends RecyclerView.Adapter<TourAdapter.MyViewHolder> {
@@ -24,19 +22,15 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.MyViewHolder> 
     final String TAG = "TourAdapter";
 
     public TourAdapter(Context context, List<ModelTour> dataList) {
-
         this.context = context;
         this.dataList = dataList;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         View rootView = inflater.inflate(R.layout.item_tour, parent, false);
         return new MyViewHolder(rootView);
-
     }
 
     @Override
@@ -59,11 +53,9 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.MyViewHolder> 
             @Override
             public void onClick(View view) {
                 data = dataList.get((int) view.getTag());
-
                 //TODO: Intent ke halaman detail
             }
         });
-
     }
 
     @Override
@@ -73,23 +65,17 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.MyViewHolder> 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private CardView mCard;
-
         public TextView mNama, mLokasi, mShortDesc, durasi, harga;
         public ImageView imageTour;
-
         public MyViewHolder(View itemView) {
             super(itemView);
-
             mCard = itemView.findViewById(R.id.item_tour_card);
-
             mNama = itemView.findViewById(R.id.item_tour_nama);
             mLokasi = itemView.findViewById(R.id.item_tour_lokasi);
             mShortDesc = itemView.findViewById(R.id.item_tour_shortDesc);
             durasi = itemView.findViewById(R.id.item_tour_duration);
             harga = itemView.findViewById(R.id.item_tour_hargaMinimum);
             imageTour = itemView.findViewById(R.id.item_tour_imageTour);
-
         }
     }
-
 }
