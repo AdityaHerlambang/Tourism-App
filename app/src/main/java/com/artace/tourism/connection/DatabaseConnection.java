@@ -25,6 +25,30 @@ public class DatabaseConnection {
     public static String ALL_TOUR = BASE_URL+"tour/alltour";
 
 
+    public static String PROFILE_PROVIDER = BASE_URL+"provider/profile";
+
+    public static String TOUR_PROVIDER = BASE_URL+"provider/tour";
+
+    public static String TREVELER_PROVIDER = BASE_URL+"provider/treveler";
+
+    public static String TREVELER_PER_TOUR_PROVIDER = BASE_URL+"provider/tourtreveler";
+
+
+    public static String getProfileProvider(String id) {
+        return PROFILE_PROVIDER+"/"+id;
+    }
+
+    public static String getTourProvider(String id) {
+        return TOUR_PROVIDER+"/"+id;
+    }
+
+    public static String getTrevelerProvider(String id) {
+        return TREVELER_PROVIDER+"/"+id;
+    }
+
+    public static String getTrevelerPerTourProvider(String id) {
+        return TREVELER_PER_TOUR_PROVIDER+"/"+id;
+    }
 
     public static String getTourUrl() {
         return TOUR_URL;

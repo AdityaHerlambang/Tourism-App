@@ -50,9 +50,6 @@ public class TourDetailActivity extends AppCompatActivity {
 
         setHeader();
         loadData();
-
-
-
     }
 
     private void loadData(){
@@ -113,11 +110,14 @@ public class TourDetailActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mAppBar = (AppBarLayout) findViewById(R.id.appBarLayout);
 
-        mToolbar.setTitle("Tour");
+        mToolbar.setTitle("Detail Tour");
         setSupportActionBar(mToolbar);
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
+            Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+            upArrow.setColorFilter(Color.argb(255,255,255,255), PorterDuff.Mode.SRC_ATOP);
+            getSupportActionBar().setHomeAsUpIndicator(upArrow);
         }
 
         if (mScroller != null) {
