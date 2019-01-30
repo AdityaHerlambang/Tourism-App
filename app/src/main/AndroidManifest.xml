@@ -15,15 +15,18 @@
         android:theme="@style/AppTheme.NoActionBar"
         tools:replace="android:icon">
         <activity android:name=".TourDetailActivity">
+        </activity>
+        <activity android:name=".TourActivity">
+        </activity>
+        <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".TourActivity">
-        </activity>
-        <activity android:name=".MainActivity"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

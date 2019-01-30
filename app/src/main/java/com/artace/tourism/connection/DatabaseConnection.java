@@ -21,6 +21,9 @@ public class DatabaseConnection {
     public static String SEARCH_TOUR_URL = BASE_URL+"tour/search";
 
     public static String SEARCH_POPULAR_TOUR_URL = BASE_URL+"tour/search";
+    public static String TOUR_DETAIL = BASE_URL+"tour/detail";
+    public static String ALL_TOUR = BASE_URL+"tour/alltour";
+
 
 
     public static String getTourUrl() {
@@ -65,4 +68,11 @@ public class DatabaseConnection {
         return INDEX_TOUR_URL;
     }
 
+    public static String getTourDetail() {
+        return TOUR_DETAIL;
+    }
+
+    public static String getAllTour() {
+        return ALL_TOUR;
+    }
 }

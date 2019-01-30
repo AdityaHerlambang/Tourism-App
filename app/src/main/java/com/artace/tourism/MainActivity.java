@@ -23,8 +23,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.artace.tourism.adapter.CountriesAdapter;
+import com.artace.tourism.adapter.TourAdapter;
 import com.artace.tourism.connection.DatabaseConnection;
 import com.artace.tourism.model.ModelCountry;
+import com.artace.tourism.model.ModelTour;
 import com.artace.tourism.utils.KenBurnsEffect;
 import com.artace.tourism.utils.StringPostRequest;
 import com.artace.tourism.utils.VolleyResponseListener;
@@ -46,9 +48,11 @@ public class MainActivity extends AppCompatActivity {
     Integer[] IMAGE_RESOUCE;
 
     //RecyclerView and Network
-    RecyclerView countriesRecyclerView;
+    RecyclerView countriesRecyclerView,toursRecyclerView;
     CountriesAdapter adapter;
+    TourAdapter adapterTour;
     List<ModelCountry> dataList = new ArrayList<ModelCountry>();
+    List<ModelTour> dataListTours = new ArrayList<ModelTour>();
     RequestQueue queue;
     SharedPreferences sharedpreferences;
     String url, searchString = "";
@@ -68,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         };
         initializeKenBurnsView();
         setCountriesRecyclerView();
+        setTourRecyclerView();
     }
 
     private void setCountriesRecyclerView(){
@@ -78,6 +83,16 @@ public class MainActivity extends AppCompatActivity {
         countriesRecyclerView.setAdapter(adapter);
 
         loadDataCountries();
+    }
+
+    private void setTourRecyclerView(){
+
+        toursRecyclerView = (RecyclerView) findViewById(R.id.main_tours_recyclerview);
+        adapterTour = new TourAdapter(this, dataListTours);
+        toursRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        toursRecyclerView.setAdapter(adapterTour);
+
+        loadDataTour();
     }
 
     private void loadDataCountries(){
@@ -133,10 +148,64 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void loadDataTour(){
+
+        url = DatabaseConnection.getAllTour();
+
+        Map<String,String> params = new HashMap<String, String>();
+        params.put("emptyvalue","emptyvalue");
+        Log.d(TAG,params.toString());
+        Log.d(TAG,url);
+
+        StringPostRequest strReq = new StringPostRequest();
+        strReq.sendRequest(Request.Method.GET,this, params, url, new VolleyResponseListener() {
+            @Override
+            public void onResponse(String response) {
+
+                try{
+                    JSONArray jsonArray = new JSONArray(response);
+                    try {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            try {
+                                JSONObject obj = jsonArray.getJSONObject(i);
+
+                                ModelTour modelTour = new ModelTour();
+                                modelTour.setId(obj.getString("id"));
+                                modelTour.setName(obj.getString("name"));
+                                modelTour.setImage(obj.getString("image"));
+                                modelTour.setShort_description(obj.getString("short_description"));
+                                modelTour.setDuration_day(obj.getInt("duration_hour"));
+                                modelTour.setDuration_hour(obj.getInt("duration_day"));
+                                modelTour.setAdult_price(obj.getInt("adult_price"));
+                                modelTour.setLocation(obj.getString("location"));
+                                dataListTours.add(modelTour);
+
+                            } catch (Exception e) {
+                                Log.e(TAG,e.getMessage());
+                            }finally {
+                                adapterTour.notifyItemChanged(i);
+                            }
+                        }
+                    } catch (Exception e) {
+                        Log.e(TAG,"2 = " + e.getMessage().toString());
+                    }
+                }catch(JSONException e){
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onError(String message) {
+                Log.e(TAG,"Ada ERROR : "+message);
+            }
+        });
+    }
+
     private void initializeKenBurnsView(){
         // KenBurnsView
         final KenBurnsEffect kenBurnsView = findViewById(R.id.ken_burns_view);
-         kenBurnsView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        kenBurnsView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         // File path, or a uri or url
         List<Integer> urls = Arrays.asList(IMAGE_RESOUCE);

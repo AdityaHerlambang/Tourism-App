@@ -1,6 +1,8 @@
 package com.artace.tourism.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.artace.tourism.R;
+import com.artace.tourism.TourDetailActivity;
 import com.artace.tourism.model.ModelTour;
 import com.squareup.picasso.Picasso;
 import java.util.List;
@@ -53,7 +56,13 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.MyViewHolder> 
             @Override
             public void onClick(View view) {
                 data = dataList.get((int) view.getTag());
-                //TODO: Intent ke halaman detail
+                Intent intent = new Intent(context, TourDetailActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("id",data.getId());
+                extras.putString("name",data.getName());
+                extras.putString("image",data.getImage());
+                intent.putExtras(extras);
+                context.startActivity(intent);
             }
         });
     }

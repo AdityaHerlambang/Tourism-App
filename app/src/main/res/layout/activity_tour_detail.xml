@@ -1,212 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".TourDetailActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tour_detail_appBarLayout"
-        android:background="@null"
-        android:elevation="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/tour_detail_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_scrollFlags="enterAlways"
-            android:theme="@style/CustomActionBar"/>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.widget.NestedScrollView
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/tour_detail_nestedScrollView">
+        tools:context=".TourDetailActivity">
 
-        <LinearLayout
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:id="@+id/appBarLayout"
+            android:background="@null"
+            android:elevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/tour_detail_image"
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:src="@drawable/hongkong_vertical"
-                android:scaleType="centerCrop"/>
+                android:layout_height="?attr/actionBarSize"
+                app:layout_scrollFlags="enterAlways"
+                android:theme="@style/CustomActionBar"/>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/nestedScrollView">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="12dp"
-                >
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:textSize="24sp"
-                    android:text="Recipe Developing"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:text="develop recipes for kusunoki food products for promotion"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textStyle="normal" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="24sp"
-                    android:text="US$ 23.49"
-                    android:textColor="@color/colorAccent"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_marginRight="8dp"
-                    android:layout_marginTop="8dp"
+                <ImageView
+                    android:id="@+id/image"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:color/darker_gray"/>
+                    android:layout_height="350dp"
+                    android:src="@drawable/hongkong_vertical"
+                    android:scaleType="centerCrop"/>
 
                 <LinearLayout
-                    android:layout_marginTop="8dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:layout_marginLeft="12dp"
+                    >
 
                     <TextView
-                        android:layout_width="5dp"
-                        android:layout_height="wrap_content"
-                        android:textSize="24sp"
-                        android:background="@color/colorAccent"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_gravity="center"
+                        android:id="@+id/name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:textSize="18sp"
-                        android:text="Overview"
+                        android:layout_marginTop="20dp"
+                        android:textSize="24sp"
+                        tools:text="Recipe Developing"
                         android:textColor="@color/colorPrimaryText"
                         android:textStyle="bold" />
 
-                </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <net.steamcrafted.materialiconlib.MaterialIconView xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:materialIcon="timer"
+                            app:materialIconSize="18dp"
+                            />
+                        <TextView
+                            android:id="@+id/duration"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorPrimaryText"
+                            tools:text="0 Hari 0 Jam"/>
 
-                <TextView
-                    android:layout_marginTop="8dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="@color/colorPrimaryText"
-                    android:text="Through introducing recipes for our products, we want to add more variety to ways to eat and entertain our costumers. Develop recipes and promote with us."/>
+                        <net.steamcrafted.materialiconlib.MaterialIconView xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:materialIcon="airplane"
+                            app:materialIconSize="18dp"
+                            android:layout_marginLeft="4dp"
+                            />
+                        <TextView
+                            android:id="@+id/airport"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorPrimaryText"
+                            tools:text="Narita Intl (Nearest Airport)"/>
+                    </LinearLayout>
 
-                <LinearLayout
-                    android:layout_marginTop="8dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
                     <TextView
-                        android:layout_width="5dp"
+                        android:id="@+id/shortdesc"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        tools:text="develop recipes for kusunoki food products for promotion"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:layout_height="wrap_content"
                         android:textSize="24sp"
-                        android:background="@color/colorAccent"
+                        tools:text="US$ 23.49"
+                        android:textColor="@color/colorAccent"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_gravity="center"
+                    <View
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@android:color/darker_gray"/>
+
+                    <LinearLayout
+                        android:layout_marginTop="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:textSize="18sp"
-                        android:text="Activities"
-                        android:textColor="@color/colorPrimaryText"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                        android:orientation="horizontal">
 
-                <TextView
-                    android:layout_marginTop="18dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="@color/colorPrimaryText"
-                    android:text="1. join work for materials and processing
-2. try your recipe, esimate cost
-3. try and improve
-4. introduce your recipe and submit as a data"/>
+                        <TextView
+                            android:layout_width="5dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="24sp"
+                            android:background="@color/colorAccent"
+                            android:textStyle="bold" />
 
-                <LinearLayout
-                    android:layout_marginTop="8dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                        <TextView
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:textSize="18sp"
+                            android:text="Overview"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
 
                     <TextView
-                        android:layout_width="5dp"
-                        android:layout_height="wrap_content"
-                        android:textSize="24sp"
-                        android:background="@color/colorAccent"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_gravity="center"
+                        android:id="@+id/overview"
+                        android:layout_marginTop="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:textSize="18sp"
-                        android:text="Preparation"
+                        android:textSize="16sp"
                         android:textColor="@color/colorPrimaryText"
-                        android:textStyle="bold" />
+                        tools:text="Through introducing recipes for our products, we want to add more variety to ways to eat and entertain our costumers. Develop recipes and promote with us."/>
+
+                    <LinearLayout
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="5dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="24sp"
+                            android:background="@color/colorAccent"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:textSize="18sp"
+                            android:text="Activities"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/activities"
+                        android:layout_marginTop="18dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorPrimaryText"
+                        tools:text="1. join work for materials and processing
+    2. try your recipe, esimate cost
+    3. try and improve
+    4. introduce your recipe and submit as a data"/>
+
+                    <LinearLayout
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="5dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="24sp"
+                            android:background="@color/colorAccent"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:textSize="18sp"
+                            android:text="Preparation"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/preparation"
+                        android:layout_marginTop="8dp"
+                        android:paddingBottom="80dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorPrimaryText"
+                        tools:text="recipe idea. Trial must be done."/>
 
                 </LinearLayout>
-
-                <TextView
-                    android:layout_marginTop="8dp"
-                    android:paddingBottom="80dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="@color/colorPrimaryText"
-                    android:text="recipe idea. Trial must be done."/>
 
             </LinearLayout>
 
-        </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
 
-    </android.support.v4.widget.NestedScrollView>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:layout_gravity="bottom"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/colorAccent"
-            android:elevation="2dp"
-            android:textColor="@color/colorSecondaryText"
-            android:text="Book this tour"
-            />
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="16dp">
 
-    </FrameLayout>
+            <Button
+                android:id="@+id/yeah_wow"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom"
+                android:background="@color/colorAccent"
+                android:elevation="2dp"
+                android:text="Book this tour"
+                android:textColor="@color/colorSecondaryText" />
 
-</android.support.constraint.ConstraintLayout>
+        </FrameLayout>
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

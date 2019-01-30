@@ -385,6 +385,12 @@
                     android:textSize="18sp"
                     android:textStyle="bold"/>
 
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/main_tours_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"/>
+
             </LinearLayout>
 
             <FrameLayout
