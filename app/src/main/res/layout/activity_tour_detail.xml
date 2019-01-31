@@ -246,24 +246,13 @@
             tools:layout_editor_absoluteY="16dp">
 
             <Button
-                android:id="@+id/tour_detail_btnBook"
+                android:id="@+id/btn_book"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="bottom"
                 android:background="@color/colorAccent"
                 android:elevation="2dp"
                 android:text="Book this tour"
-                android:textColor="@color/colorSecondaryText" />
-
-            <Button
-                android:id="@+id/tour_detail_btnListTraveler"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_gravity="bottom"
-                android:background="@color/colorAccent"
-                android:elevation="2dp"
-                android:text="List Treveler"
-                android:visibility="gone"
                 android:textColor="@color/colorSecondaryText" />
 
         </FrameLayout>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#fafafa</color>
+    <color name="colorSecondary">#3F51B5</color>
     <color name="colorPrimaryLight">#ffffff</color>
     <!--<color name="colorPrimaryDark">#c7c7c7</color>-->
     <color name="colorPrimaryDark">#000000</color>
@@ -9,5 +10,7 @@
     <color name="colorAccent">#536DFE</color>
     <color name="transparent">#00FAFAFA</color>
     <color name="gray_darker">#A9A9A9</color>
+
+    <color name="colorUnderlineDivider">#a5afaeae</color>
 
 </resources>

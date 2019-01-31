@@ -20,16 +20,16 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".TourDetailActivity" />
         <activity android:name=".ProviderActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".TourActivity" />
         <activity android:name=".MainActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+
+        <activity android:name=".ChooseRegisterActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

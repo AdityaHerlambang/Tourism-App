@@ -2,7 +2,7 @@
 
 <layout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-        <RelativeLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -30,85 +30,20 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:text="Host to Host Tourism"
+                    android:text="Register as"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
                     android:textStyle="normal"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="80dp"
                     android:layout_marginBottom="24dp"
                     android:textSize="24sp"
                     android:textColor="@color/colorSecondaryText"/>
 
-                <!--<EditText-->
-                <!--android:id="@+id/login_email"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="#fefefe"-->
-                <!--android:fontFamily="sans-serif"-->
-                <!--android:hint="E-mail"-->
-                <!--android:inputType="textEmailAddress"-->
-                <!--android:paddingBottom="10sp"-->
-                <!--android:paddingLeft="10sp"-->
-                <!--android:paddingRight="10sp"-->
-                <!--android:paddingTop="10sp"-->
-                <!--android:textAlignment="center"-->
-                <!--android:textColorHint="#dcdcdc" />-->
-
-                <com.github.florent37.materialtextfield.MaterialTextField
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:mtf_image="@drawable/ic_account_circle_black_24dp">
-
-                    <EditText
-                        android:id="@+id/login_email"
-                        android:textColor="@color/colorPrimaryText"
-                        android:layout_width="match_parent"
-                        android:inputType="textEmailAddress"
-                        android:layout_height="wrap_content"
-                        android:textColorHint="#fff"
-                        android:hint="Email / Username"/>
-
-                </com.github.florent37.materialtextfield.MaterialTextField>
-
-                <com.github.florent37.materialtextfield.MaterialTextField
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:mtf_image="@drawable/ic_https_black_24dp">
-
-                    <EditText
-                        android:id="@+id/login_password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Password"
-                        android:inputType="textPassword"
-                        android:textColor="@color/colorPrimaryText"
-                        android:textColorHint="#fff" />
-
-                </com.github.florent37.materialtextfield.MaterialTextField>
-
-
-
-                <!--<EditText-->
-                <!--android:id="@+id/login_password"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="3dp"-->
-                <!--android:background="#fefefe"-->
-                <!--android:fontFamily="sans-serif"-->
-                <!--android:hint="Password"-->
-                <!--android:inputType="textPassword"-->
-                <!--android:paddingBottom="10sp"-->
-                <!--android:paddingLeft="10sp"-->
-                <!--android:paddingRight="10sp"-->
-                <!--android:paddingTop="10sp"-->
-                <!--android:textAlignment="center"-->
-                <!--android:textColorHint="#dcdcdc" />-->
-
                 <mehdi.sakout.fancybuttons.FancyButton
-                    android:id="@+id/login_btn"
+                    android:id="@+id/traveller_btn"
                     android:layout_gravity="center"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="match_parent"
@@ -117,7 +52,23 @@
                     fancy:fb_defaultColor="@color/colorAccent"
                     fancy:fb_radius="30dp"
                     android:padding="8dp"
-                    fancy:fb_text="MASUK"
+                    fancy:fb_text="Traveller"
+                    fancy:fb_textColor="#FFFFFF"
+                    fancy:fb_fontIconResource="\uf0a9"
+                    android:textSize="@dimen/big_button_fontSize"
+                    fancy:fb_iconPosition="left" />
+
+                <mehdi.sakout.fancybuttons.FancyButton
+                    android:id="@+id/provider_btn"
+                    android:layout_gravity="center"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/big_button_height"
+                    android:layout_marginTop="16dp"
+                    fancy:fb_defaultColor="@color/colorAccent"
+                    fancy:fb_radius="30dp"
+                    android:padding="8dp"
+                    fancy:fb_text="Provider"
                     fancy:fb_textColor="#FFFFFF"
                     fancy:fb_fontIconResource="\uf0a9"
                     android:textSize="@dimen/big_button_fontSize"
@@ -135,13 +86,13 @@
                 <!--end divider-->
 
                 <TextView
-                    android:id="@+id/register_btn"
+                    android:id="@+id/login_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:gravity="center"
-                    android:text="Or Click Here To Register"
+                    android:text="Or Click Here To Login"
                     android:textColor="#fefefe"
                     android:textStyle="normal"
                     android:textSize="18sp" />

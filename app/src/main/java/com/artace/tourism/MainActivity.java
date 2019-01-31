@@ -1,6 +1,9 @@
 package com.artace.tourism;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.databinding.DataBindingUtil;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +28,8 @@ import com.android.volley.toolbox.Volley;
 import com.artace.tourism.adapter.CountriesAdapter;
 import com.artace.tourism.adapter.TourAdapter;
 import com.artace.tourism.connection.DatabaseConnection;
+import com.artace.tourism.constant.Field;
+import com.artace.tourism.databinding.ActivityMainBinding;
 import com.artace.tourism.model.ModelCountry;
 import com.artace.tourism.model.ModelTour;
 import com.artace.tourism.utils.KenBurnsEffect;
@@ -45,6 +50,8 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    ActivityMainBinding binding;
+
     Integer[] IMAGE_RESOUCE;
 
     //RecyclerView and Network
@@ -57,13 +64,17 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sharedpreferences;
     String url, searchString = "";
 
+    Boolean session = false;
+
     //TAG
     final String TAG = "RealisasiTahunan";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
+
+        setComponentView();
 
         IMAGE_RESOUCE = new Integer[]{
                 R.drawable.dashboard_header1,
@@ -73,6 +84,32 @@ public class MainActivity extends AppCompatActivity {
         initializeKenBurnsView();
         setCountriesRecyclerView();
         setTourRecyclerView();
+
+    }
+
+    private void setComponentView(){
+
+        // Cek session login jika TRUE maka langsung buka MainActivity
+        sharedpreferences = getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
+        session = sharedpreferences.getBoolean(Field.getSessionStatus(),false);
+
+        if (session) {
+            binding.cardIntro.setVisibility(View.GONE);
+        }
+        else{
+            binding.cardIntro.setVisibility(View.VISIBLE);
+        }
+
+        binding.mainLearnMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("from","MainActivity");
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setCountriesRecyclerView(){

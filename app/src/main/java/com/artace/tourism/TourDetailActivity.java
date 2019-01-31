@@ -1,5 +1,8 @@
 package com.artace.tourism;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -10,11 +13,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.widget.Button;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.android.volley.Request;
 import com.artace.tourism.connection.DatabaseConnection;
+import com.artace.tourism.constant.Field;
 import com.artace.tourism.databinding.ActivityTourDetailBinding;
 import com.artace.tourism.utils.StringPostRequest;
 import com.artace.tourism.utils.VolleyResponseListener;
@@ -37,21 +41,38 @@ public class TourDetailActivity extends AppCompatActivity {
     Toolbar mToolbar;
     AppBarLayout mAppBar;
     float opacity = 0;
-    String id, name, image, status;
+    String id, name, image;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_tour_detail);
 
+        final SharedPreferences sharedPreferences = getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
+
         Bundle extras = getIntent().getExtras();
         id = extras.getString("id");
         name = extras.getString("name");
         image = extras.getString("image");
-        status = extras.getString("status");
 
         setHeader();
         loadData();
+
+        binding.btnBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(sharedPreferences.getString("guest_id","").equals("")){ //Jika Belum Login
+                    Intent intent = new Intent(TourDetailActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+                else{ //Jika Sudah Login
+
+                }
+            }
+        });
+
     }
 
     private void loadData(){
@@ -112,14 +133,11 @@ public class TourDetailActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mAppBar = (AppBarLayout) findViewById(R.id.appBarLayout);
 
-        mToolbar.setTitle("Detail Tour");
+        mToolbar.setTitle("Tour");
         setSupportActionBar(mToolbar);
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
-            Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
-            upArrow.setColorFilter(Color.argb(255,255,255,255), PorterDuff.Mode.SRC_ATOP);
-            getSupportActionBar().setHomeAsUpIndicator(upArrow);
         }
 
         if (mScroller != null) {
