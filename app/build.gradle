@@ -91,6 +91,9 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 
+    //Increase Decrease Number
+    implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
+
     implementation 'com.mikepenz:google-material-typeface:3.0.1.2.original'
     implementation 'com.squareup.picasso:picasso:2.3.2'
     implementation 'com.github.florent37:materialtextfield:1.0.5'

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -32,6 +33,7 @@ import com.artace.tourism.constant.Field;
 import com.artace.tourism.databinding.ActivityMainBinding;
 import com.artace.tourism.model.ModelCountry;
 import com.artace.tourism.model.ModelTour;
+import com.artace.tourism.utils.DrawerMenu;
 import com.artace.tourism.utils.KenBurnsEffect;
 import com.artace.tourism.utils.StringPostRequest;
 import com.artace.tourism.utils.VolleyResponseListener;
@@ -47,6 +49,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -85,31 +89,59 @@ public class MainActivity extends AppCompatActivity {
         setCountriesRecyclerView();
         setTourRecyclerView();
 
+        if(getIntent().getExtras() != null){
+            Bundle extras = getIntent().getExtras();
+            if(extras.getString("from").equals("Register")){
+                SweetAlertDialog sDialog = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.SUCCESS_TYPE);
+                sDialog.setTitle("Success !");
+                sDialog.setContentText("You are now registered and logged in");
+                sDialog.show();
+            }
+        }
+
     }
 
     private void setComponentView(){
+
+        this.setSupportActionBar(binding.toolbar);
+        ActionBar ab = this.getSupportActionBar();
+        ab.setTitle("");
+//
+        DrawerMenu drawer = new DrawerMenu();
+        drawer.createDrawer(this, this, binding.toolbar);
+
 
         // Cek session login jika TRUE maka langsung buka MainActivity
         sharedpreferences = getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
         session = sharedpreferences.getBoolean(Field.getSessionStatus(),false);
 
         if (session) {
-            binding.cardIntro.setVisibility(View.GONE);
+            if(sharedpreferences.getString("role_id","").equals("1")){
+                binding.cardIntroTitle.setText("See Your Booked Tour");
+                binding.mainLearnMore.setText("Booked Tour");
+                binding.mainLearnMore.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //TODO : Intent ke booked tour
+                    }
+                });
+            }else{
+                binding.cardIntro.setVisibility(View.GONE);
+            }
         }
         else{
             binding.cardIntro.setVisibility(View.VISIBLE);
+            binding.mainLearnMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                    Bundle extras = new Bundle();
+                    extras.putString("from","MainActivity");
+                    intent.putExtras(extras);
+                    startActivity(intent);
+                }
+            });
         }
-
-        binding.mainLearnMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-                Bundle extras = new Bundle();
-                extras.putString("from","MainActivity");
-                intent.putExtras(extras);
-                startActivity(intent);
-            }
-        });
     }
 
     private void setCountriesRecyclerView(){
@@ -128,8 +160,10 @@ public class MainActivity extends AppCompatActivity {
         adapterTour = new TourAdapter(this, dataListTours);
         toursRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         toursRecyclerView.setAdapter(adapterTour);
+        toursRecyclerView.setNestedScrollingEnabled(false);
 
         loadDataTour();
+
     }
 
     private void loadDataCountries(){

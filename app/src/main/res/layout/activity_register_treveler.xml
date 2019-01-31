@@ -269,7 +269,7 @@
                     fancy:fb_defaultColor="@color/colorAccent"
                     fancy:fb_radius="30dp"
                     android:padding="8dp"
-                    fancy:fb_text="Simpan"
+                    fancy:fb_text="Save"
                     fancy:fb_textColor="#FFFFFF"
                     fancy:fb_fontIconResource="\uf0c7"
                     android:elevation="2dp"

@@ -251,6 +251,7 @@ public class TourActivity extends AppCompatActivity{
                                 JSONObject obj = jsonArray.getJSONObject(i);
 
                                 ModelTour modelTour = new ModelTour();
+                                modelTour.setId(obj.getString("id"));
                                 modelTour.setName(obj.getString("name"));
                                 modelTour.setImage(obj.getString("image"));
                                 modelTour.setShort_description(obj.getString("short_description"));

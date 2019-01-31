@@ -72,7 +72,6 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.MyVi
             public void onClick(View view) {
                 data = dataList.get((int) view.getTag());
 
-                //TODO: Intent ke halaman country
                 Intent intent = new Intent(context, TourActivity.class); // gets the previously created intent
                 intent.putExtra("tipe", "1");
                 intent.putExtra("id", data.getId());

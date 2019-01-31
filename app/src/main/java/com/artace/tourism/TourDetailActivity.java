@@ -1,5 +1,6 @@
 package com.artace.tourism;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 
 import com.android.volley.Request;
 import com.artace.tourism.connection.DatabaseConnection;
+import com.artace.tourism.constant.Field;
 import com.artace.tourism.databinding.ActivityTourDetailBinding;
 import com.artace.tourism.utils.StringPostRequest;
 import com.artace.tourism.utils.VolleyResponseListener;
@@ -42,12 +44,16 @@ public class TourDetailActivity extends AppCompatActivity {
     float opacity = 0;
     String id, name, image, status = "";
 
-    SharedPreferences sharedPreferences;
+    SharedPreferences sharedpreferences;
+    Boolean session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_tour_detail);
+
+        sharedpreferences = getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
+        session = sharedpreferences.getBoolean(Field.getSessionStatus(),false);
 
         Bundle extras = getIntent().getExtras();
         id = extras.getString("id");
@@ -63,11 +69,21 @@ public class TourDetailActivity extends AppCompatActivity {
         binding.tourDetailBtnBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TourDetailActivity.this, LoginActivity.class);
-                Bundle extras = new Bundle();
-                extras.putString("from","Booking");
-                intent.putExtras(extras);
-                startActivity(intent);
+                if(session){
+                    Intent intent = new Intent(TourDetailActivity.this, BookingActivity.class);
+                    Bundle extras = new Bundle();
+                    extras.putString("from","Booking");
+                    extras.putString("tour_id",String.valueOf(id));
+                    intent.putExtras(extras);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(TourDetailActivity.this, LoginActivity.class);
+                    Bundle extras = new Bundle();
+                    extras.putString("from","Booking");
+                    extras.putString("tour_id",String.valueOf(id));
+                    intent.putExtras(extras);
+                    startActivity(intent);
+                }
             }
         });
 

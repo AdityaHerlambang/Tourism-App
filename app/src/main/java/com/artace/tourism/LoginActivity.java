@@ -43,9 +43,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
 
-// Cek session login jika TRUE maka langsung buka MainActivity
-        sharedpreferences = getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
-
         // Cek session login jika TRUE maka langsung buka MainActivity
         sharedpreferences = getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
         session = sharedpreferences.getBoolean(Field.getSessionStatus(),false);
@@ -56,10 +53,6 @@ public class LoginActivity extends AppCompatActivity {
             if(extras.getString("from").equals("MainActivity")){
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
-            }
-            if(extras.getString("from").equals("Booking")){
-                //TODO : Intent ke form booking
-
             }
         }
         else{
@@ -83,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this, RegisterTrevelerActivity.class);
                     Bundle extras = new Bundle();
                     extras.putString("from","Booking");
+                    extras.putString("tour_id",extras.getString("tour_id"));
                     intent.putExtras(extras);
                     startActivity(intent);
                 }
@@ -134,7 +128,11 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(intent);
                         }
                         if(extras.getString("from").equals("Booking")){
-                            //TODO : Intent ke form booking
+                            Bundle extrasBooking = new Bundle();
+                            extrasBooking.putString("tour_id",extras.getString("tour_id"));
+                            Intent intent = new Intent(LoginActivity.this, BookingActivity.class);
+                            intent.putExtras(extrasBooking);
+                            startActivity(intent);
                         }
                     }else{ //Jika Tour Provider
                         editor.putString("user_id", obj.getString("user_id"));

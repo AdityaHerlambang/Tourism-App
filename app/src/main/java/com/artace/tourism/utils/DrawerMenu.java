@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -44,13 +45,23 @@ public class DrawerMenu {
 
     public void createDrawer(Context context, AppCompatActivity activity, Toolbar mToolbar){
 
-        //get the value username and password from login
-        // Cek session login jika TRUE maka langsung buka MainActivity
+        sharedpreferences = context.getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
+        session = sharedpreferences.getBoolean(Field.getSessionStatus(),false);
 
+        if (session) {
+            nama = sharedpreferences.getString("name","Guest");
+            if(sharedpreferences.getString("role_id","").equals("1")){
+                sub_title = "Traveller";
+            }
+            else{
+                sub_title = "Tour Provider";
+            }
+        }
+        else{
             nama = "Guest";
             sub_title = "Silahkan Login";
 
-
+        }
 
         // Create the AccountHeader
 
@@ -79,9 +90,6 @@ public class DrawerMenu {
                     }
                 })
                 .build();
-
-        sharedpreferences = context.getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
-        session = sharedpreferences.getBoolean(Field.getSessionStatus(),false);
 
         if (session) {
             buildDrawerLoggedIn(context,activity,mToolbar, headerResult);
@@ -150,6 +158,9 @@ public class DrawerMenu {
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         if (drawerItem.getIdentifier() == 1){
                             Intent intent = new Intent(contextFinal, LoginActivity.class);
+                            Bundle extras = new Bundle();
+                            extras.putString("from","MainActivity");
+                            intent.putExtras(extras);
                             contextFinal.startActivity(intent);
                         }
                         if (drawerItem.getIdentifier() == 2){

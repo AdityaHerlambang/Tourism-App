@@ -13,15 +13,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
-        tools:replace="android:icon">
-        <activity android:name=".ListTravelerActivity"></activity>
+        tools:replace="android:icon,android:theme">
+        <activity android:name=".BookingActivity"></activity>
+        <activity android:name=".ListTravelerActivity" />
         <activity android:name=".TentangAplikasiActivity" />
-        <activity android:name=".RegisterTrevelerActivity" />
-        <activity android:name=".RegisterProviderActivity" />
+        <activity
+            android:name=".RegisterTrevelerActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".RegisterProviderActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".TourDetailActivity" />
-        <activity android:name=".ProviderActivity">
-        </activity>
+        <activity android:name=".ProviderActivity"></activity>
         <activity android:name=".TourActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -30,7 +34,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".ChooseRegisterActivity" />
 
         <meta-data

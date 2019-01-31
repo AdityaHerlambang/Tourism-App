@@ -1,5 +1,8 @@
 package com.artace.tourism;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
@@ -17,6 +20,7 @@ import com.abdeveloper.library.MultiSelectDialog;
 import com.abdeveloper.library.MultiSelectModel;
 import com.android.volley.Request;
 import com.artace.tourism.connection.DatabaseConnection;
+import com.artace.tourism.constant.Field;
 import com.artace.tourism.databinding.ActivityRegisterTrevelerBinding;
 import com.artace.tourism.model.ModelCountry;
 import com.artace.tourism.utils.StringPostRequest;
@@ -84,12 +88,15 @@ public class RegisterTrevelerActivity extends AppCompatActivity implements Valid
     MultiSelectDialog multiSelectDialog;
 
     String country_id;
-
+    SweetAlertDialog sDialog;
+    SharedPreferences sharedpreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_register_treveler);
+
+        sharedpreferences = getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
 
         validator = new Validator(this);
         validator.setValidationListener(this);
@@ -212,7 +219,7 @@ public class RegisterTrevelerActivity extends AppCompatActivity implements Valid
 
     private void submitForm(){
 
-        final SweetAlertDialog sDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        sDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         sDialog.setTitle("Processing...");
         sDialog.show();
 
@@ -236,10 +243,86 @@ public class RegisterTrevelerActivity extends AppCompatActivity implements Valid
                 if(getIntent().getExtras() != null){
                     Bundle extras = getIntent().getExtras();
                     if(extras.getString("from").equals("Booking")){
-                        //TODO : Ke Form Booking
+                        Bundle extrasBooking = new Bundle();
+                        extrasBooking.putString("tour_id",extras.getString("tour_id"));
+                        Intent intent = new Intent(RegisterTrevelerActivity.this, BookingActivity.class);
+                        intent.putExtras(extrasBooking);
+                        startActivity(intent);
                     }
                 }
-                sDialog.dismissWithAnimation();
+                else{
+                    Intent intent = new Intent(RegisterTrevelerActivity.this, MainActivity.class);
+                    Bundle extras = new Bundle();
+                    extras.putString("from","Register");
+                    intent.putExtras(extras);
+                    startActivity(intent);
+                }
+
+                login();
+
+
+            }
+
+            @Override
+            public void onError(String message) {
+                Log.e(TAG,"Ada ERROR : "+message);
+            }
+        });
+    }
+
+    private void login(){
+        Map<String,String> params = new HashMap<String, String>();
+        params.put("username",binding.password.getText().toString());
+        params.put("password",binding.password.getText().toString());
+        Log.d(TAG,params.toString());
+
+        final SweetAlertDialog sDialog = new SweetAlertDialog(this,SweetAlertDialog.PROGRESS_TYPE);
+        sDialog.setTitle("Logging in");
+        sDialog.show();
+
+        String url = DatabaseConnection.getLOGIN();
+        Log.d(TAG,url);
+
+        StringPostRequest strReq = new StringPostRequest();
+        strReq.sendRequest(Request.Method.POST,this, params, url, new VolleyResponseListener() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject obj = new JSONObject(response);
+
+                    sDialog.dismissWithAnimation();
+
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    editor.putBoolean(Field.getSessionStatus(), true);
+                    editor.putString("role_id", obj.getString("role_id"));
+
+                    editor.putString("id", obj.getString("id"));
+                    editor.putString("user_id", obj.getString("user_id"));
+                    editor.putString("country_id", obj.getString("country_id"));
+                    editor.putString("firstname", obj.getString("firstname"));
+                    editor.putString("lastname", obj.getString("lastname"));
+                    editor.putString("phone", obj.getString("phone"));
+                    editor.putString("email", obj.getString("email"));
+                    editor.commit();
+
+                    if(getIntent().getExtras() != null){
+                        Bundle extras = getIntent().getExtras();
+                        if(extras.getString("from").equals("Booking")){
+                            //TODO : Ke Form Booking
+                        }
+                    }
+                    else{
+                        Intent intent = new Intent(RegisterTrevelerActivity.this, MainActivity.class);
+                        Bundle extras = new Bundle();
+                        extras.putString("from","Register");
+                        intent.putExtras(extras);
+                        startActivity(intent);
+                    }
+
+                } catch (Exception e) {
+                    Log.e(TAG,e.getMessage());
+                }
+
             }
 
             @Override

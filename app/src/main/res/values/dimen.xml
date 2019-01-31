@@ -46,6 +46,7 @@
 
     <!--CARD font size-->
     <dimen name="card_textSize">16sp</dimen>
+    <dimen name="card_textSize_form">14sp</dimen>
     <dimen name="card_textSize_small">12sp</dimen>
     <dimen name="card_textSize_very_small">10sp</dimen>
     <dimen name="card_textSize_smallest">10sp</dimen>
