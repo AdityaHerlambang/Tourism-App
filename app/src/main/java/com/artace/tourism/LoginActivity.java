@@ -80,8 +80,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(extras.getString("from").equals("Booking")){
-
                     Intent intent = new Intent(LoginActivity.this, RegisterTrevelerActivity.class);
+                    Bundle extras = new Bundle();
+                    extras.putString("from","Booking");
+                    intent.putExtras(extras);
                     startActivity(intent);
                 }
                 else{

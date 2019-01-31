@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -98,6 +99,8 @@ public class TourActivity extends AppCompatActivity{
                 }
                 return false;
             } });
+
+        hideSoftKeyboard();
     }
 
     private void inisialisasiToolbar(){
@@ -356,4 +359,11 @@ public class TourActivity extends AppCompatActivity{
             }
         });
     }
+
+    private void hideSoftKeyboard(){
+        getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+        );
+    }
+
 }

@@ -40,7 +40,7 @@ public class TourDetailActivity extends AppCompatActivity {
     Toolbar mToolbar;
     AppBarLayout mAppBar;
     float opacity = 0;
-    String id, name, image, status;
+    String id, name, image, status = "";
 
     SharedPreferences sharedPreferences;
 
@@ -53,11 +53,24 @@ public class TourDetailActivity extends AppCompatActivity {
         id = extras.getString("id");
         name = extras.getString("name");
         image = extras.getString("image");
-        status = extras.getString("status");
+        if(extras.getString("status") != null)
+            status = extras.getString("status");
 
         setHeader();
         loadData();
         settingBtnBottom();
+
+        binding.tourDetailBtnBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TourDetailActivity.this, LoginActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("from","Booking");
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void loadData(){
