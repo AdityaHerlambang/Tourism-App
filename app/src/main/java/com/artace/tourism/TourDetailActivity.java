@@ -1,5 +1,6 @@
 package com.artace.tourism;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -52,6 +54,7 @@ public class TourDetailActivity extends AppCompatActivity {
 
         setHeader();
         loadData();
+        settingBtnBottom();
     }
 
     private void loadData(){
@@ -185,6 +188,22 @@ public class TourDetailActivity extends AppCompatActivity {
 
         mToolbar.setTitleTextColor(Color.argb(255,255,255,255));
         mToolbar.setBackgroundColor(Color.argb((int)(opacity * 255), 255, 255, 255));
+    }
+
+    private void settingBtnBottom(){
+        if (status.equals("fragment")) {
+            binding.tourDetailBtnListTraveler.setVisibility(View.VISIBLE);
+            binding.tourDetailBtnBook.setVisibility(View.GONE);
+        }
+
+        binding.tourDetailBtnListTraveler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TourDetailActivity.this, ListTravelerActivity.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

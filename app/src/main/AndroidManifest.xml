@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:replace="android:icon">
-        <activity android:name=".TentangAplikasiActivity"></activity>
+        <activity android:name=".ListTravelerActivity"></activity>
+        <activity android:name=".TentangAplikasiActivity" />
         <activity android:name=".RegisterTrevelerActivity" />
         <activity android:name=".RegisterProviderActivity" />
         <activity android:name=".LoginActivity" />
@@ -27,9 +28,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".TourActivity" />
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
