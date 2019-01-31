@@ -68,12 +68,11 @@ public class ProviderActivity extends AppCompatActivity {
 
         FragmentManager manager = getSupportFragmentManager();
         boolean fragmentPopped = manager.popBackStackImmediate (backStateName, 0);
-
+        FragmentTransaction ft = manager.beginTransaction();
         if (!fragmentPopped && manager.findFragmentByTag(fragmentTag) == null){ //fragment not in back stack, create it.
-            FragmentTransaction ft = manager.beginTransaction();
             ft.replace(R.id.activity_provider_container, fragment, fragmentTag);
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-            ft.addToBackStack(backStateName);
+            ft.addToBackStack(fragmentTag);
             ft.commit();
             return true;
         }

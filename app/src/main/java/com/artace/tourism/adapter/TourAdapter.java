@@ -65,6 +65,7 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.MyViewHolder> 
                 extras.putString("id",data.getId());
                 extras.putString("name",data.getName());
                 extras.putString("image",data.getImage());
+                extras.putString("status", data.getCustomStatus());
                 intent.putExtras(extras);
                 context.startActivity(intent);
             }

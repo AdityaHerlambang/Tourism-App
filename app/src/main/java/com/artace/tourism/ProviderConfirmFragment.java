@@ -1,12 +1,36 @@
 package com.artace.tourism;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+
+import com.android.volley.Request;
+import com.artace.tourism.adapter.TourAdapter;
+import com.artace.tourism.adapter.TravelerAdapter;
+import com.artace.tourism.connection.DatabaseConnection;
+import com.artace.tourism.model.ModelTour;
+import com.artace.tourism.model.ModelTransaction;
+import com.artace.tourism.utils.StringPostRequest;
+import com.artace.tourism.utils.VolleyResponseListener;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -26,6 +50,12 @@ public class ProviderConfirmFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private String TAG = "ProviderConfirm", url;
+    TravelerAdapter adapterTraveler;
+    List<ModelTransaction> dataListTraveler = new ArrayList<ModelTransaction>();
+    RecyclerView travelerRecycler;
+    FrameLayout rootView;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,7 +94,72 @@ public class ProviderConfirmFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_provider_confirm, container, false);
+
+        rootView = (FrameLayout) inflater.inflate(R.layout.fragment_provider_confirm, container, false);
+
+        setRecyclerTraveler();
+
+        return rootView;
+    }
+
+    public void setRecyclerTraveler(){
+        travelerRecycler = (RecyclerView) rootView.findViewById(R.id.provider_confirm_Recycler);
+        adapterTraveler = new TravelerAdapter(getContext(), dataListTraveler);
+        travelerRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        travelerRecycler.setAdapter(adapterTraveler);
+
+        loadDataTraveler();
+    }
+
+    public void loadDataTraveler(){
+        SharedPreferences sharedpreferences = getActivity().getSharedPreferences("True", Context.MODE_PRIVATE);
+        String idProvider = sharedpreferences.getString("id",null);
+        url = DatabaseConnection.getTrevelerProvider("1");
+
+        Map<String,String> params = new HashMap<String, String>();
+        params.put("emptyvalue","emptyvalue");
+        Log.d(TAG,params.toString());
+        Log.d(TAG,url);
+
+        StringPostRequest strReq = new StringPostRequest();
+        strReq.sendRequest(Request.Method.GET,getContext(), params, url, new VolleyResponseListener() {
+            @Override
+            public void onResponse(String response) {
+                dataListTraveler.clear();
+                try{
+                    JSONArray jsonArray = new JSONArray(response);
+                    try {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            try {
+                                JSONObject obj = jsonArray.getJSONObject(i);
+
+                                ModelTransaction data = new ModelTransaction(obj.getInt("id"), obj.getInt("tour_id"),
+                                obj.getInt("guest_id"), obj.getInt("adult_qty"), obj.getInt("child_qty"), obj.getInt("confirmation_status")
+                                        , obj.getInt("country_id"), obj.getString("tour_name"), obj.getString("denied_reason"), obj.getString("tour_start_date") ,
+                                        obj.getString("firstname") , obj.getString("lastname") , obj.getString("country_name"), obj.getString("phone_number"));
+
+                                dataListTraveler.add(data);
+
+                            } catch (Exception e) {
+                                Log.e(TAG,e.getMessage());
+                            }finally {
+                                adapterTraveler.notifyItemChanged(i);
+                            }
+                        }
+                    } catch (Exception e) {
+                        Log.e(TAG,"2 = " + e.getMessage().toString());
+                    }
+                }catch(JSONException e){
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onError(String message) {
+                Log.e(TAG,"Ada ERROR : "+message);
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event

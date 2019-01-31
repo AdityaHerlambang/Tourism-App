@@ -11,6 +11,7 @@ public class ModelTour {
     String location_latitude, location_longitude;
     String nearest_airport;
     String country;
+    String customStatus;
     String category, status_popularity;
     int verified_by_admin;
     double adult_price, child_price;
@@ -91,6 +92,14 @@ public class ModelTour {
 
     public void setTour_provider_id(String tour_provider_id) {
         this.tour_provider_id = tour_provider_id;
+    }
+
+    public String getCustomStatus() {
+        return customStatus;
+    }
+
+    public void setCustomStatus(String customStatus) {
+        this.customStatus = customStatus;
     }
 
     public String getName() {

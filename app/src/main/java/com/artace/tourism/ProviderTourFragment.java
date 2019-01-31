@@ -135,6 +135,7 @@ public class ProviderTourFragment extends Fragment {
                                 modelTour.setDuration_hour(obj.getInt("duration_day"));
                                 modelTour.setAdult_price(obj.getInt("adult_price"));
                                 modelTour.setLocation(obj.getString("location"));
+                                modelTour.setCustomStatus("providerFragment");
                                 dataListTours.add(modelTour);
 
                             } catch (Exception e) {

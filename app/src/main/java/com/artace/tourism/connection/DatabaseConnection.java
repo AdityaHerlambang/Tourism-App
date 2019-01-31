@@ -23,7 +23,7 @@ public class DatabaseConnection {
     public static String SEARCH_POPULAR_TOUR_URL = BASE_URL+"tour/search";
     public static String TOUR_DETAIL = BASE_URL+"tour/detail";
     public static String ALL_TOUR = BASE_URL+"tour/alltour";
-
+    public static String CONFIRMATION_TRAVELER = BASE_URL+"provider/confirmation";
 
     public static String PROFILE_PROVIDER = BASE_URL+"provider/profile";
 
@@ -48,6 +48,10 @@ public class DatabaseConnection {
 
     public static String getTrevelerPerTourProvider(String id) {
         return TREVELER_PER_TOUR_PROVIDER+"/"+id;
+    }
+
+    public static String getConfirmationTraveler() {
+        return CONFIRMATION_TRAVELER;
     }
 
     public static String getTourUrl() {

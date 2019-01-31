@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.android.volley.Request;
@@ -36,7 +37,7 @@ public class TourDetailActivity extends AppCompatActivity {
     Toolbar mToolbar;
     AppBarLayout mAppBar;
     float opacity = 0;
-    String id, name, image;
+    String id, name, image, status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class TourDetailActivity extends AppCompatActivity {
         id = extras.getString("id");
         name = extras.getString("name");
         image = extras.getString("image");
+        status = extras.getString("status");
 
         setHeader();
         loadData();
