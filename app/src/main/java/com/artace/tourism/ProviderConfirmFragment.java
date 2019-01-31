@@ -114,7 +114,7 @@ public class ProviderConfirmFragment extends Fragment {
     public void loadDataTraveler(){
         SharedPreferences sharedpreferences = getActivity().getSharedPreferences("True", Context.MODE_PRIVATE);
         String idProvider = sharedpreferences.getString("id",null);
-        url = DatabaseConnection.getTrevelerProvider("1");
+        url = DatabaseConnection.getTrevelerProvider(idProvider);
 
         Map<String,String> params = new HashMap<String, String>();
         params.put("emptyvalue","emptyvalue");

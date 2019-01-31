@@ -1,6 +1,7 @@
 package com.artace.tourism;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -106,8 +107,9 @@ public class ProviderTourFragment extends Fragment {
     }
 
     public void loadDataTour(){
-
-        url = DatabaseConnection.getAllTour();
+        SharedPreferences sharedpreferences = getActivity().getSharedPreferences("True", Context.MODE_PRIVATE);
+        String idProvider = sharedpreferences.getString("id",null);
+        url = DatabaseConnection.getTourProvider(idProvider);
 
         Map<String,String> params = new HashMap<String, String>();
         params.put("emptyvalue","emptyvalue");
@@ -135,7 +137,7 @@ public class ProviderTourFragment extends Fragment {
                                 modelTour.setDuration_hour(obj.getInt("duration_day"));
                                 modelTour.setAdult_price(obj.getInt("adult_price"));
                                 modelTour.setLocation(obj.getString("location"));
-                                modelTour.setCustomStatus("providerFragment");
+                                modelTour.setCustomStatus("fragment");
                                 dataListTours.add(modelTour);
 
                             } catch (Exception e) {

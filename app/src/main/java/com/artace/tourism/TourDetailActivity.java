@@ -1,7 +1,5 @@
 package com.artace.tourism;
 
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
@@ -13,12 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.android.volley.Request;
 import com.artace.tourism.connection.DatabaseConnection;
-import com.artace.tourism.constant.Field;
 import com.artace.tourism.databinding.ActivityTourDetailBinding;
 import com.artace.tourism.utils.StringPostRequest;
 import com.artace.tourism.utils.VolleyResponseListener;
@@ -41,7 +38,7 @@ public class TourDetailActivity extends AppCompatActivity {
     Toolbar mToolbar;
     AppBarLayout mAppBar;
     float opacity = 0;
-    String id, name, image;
+    String id, name, image, status;
 
     SharedPreferences sharedPreferences;
 
@@ -50,29 +47,15 @@ public class TourDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_tour_detail);
 
-        final SharedPreferences sharedPreferences = getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
-
         Bundle extras = getIntent().getExtras();
         id = extras.getString("id");
         name = extras.getString("name");
         image = extras.getString("image");
+        status = extras.getString("status");
 
         setHeader();
         loadData();
-
-        binding.btnBook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(sharedPreferences.getString("guest_id","").equals("")){ //Jika Belum Login
-                    Intent intent = new Intent(TourDetailActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                }
-                else{ //Jika Sudah Login
-
-                }
-            }
-        });
-
+        settingBtnBottom();
     }
 
     private void loadData(){
@@ -133,11 +116,14 @@ public class TourDetailActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mAppBar = (AppBarLayout) findViewById(R.id.appBarLayout);
 
-        mToolbar.setTitle("Tour");
+        mToolbar.setTitle("Detail Tour");
         setSupportActionBar(mToolbar);
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
+            Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+            upArrow.setColorFilter(Color.argb(255,255,255,255), PorterDuff.Mode.SRC_ATOP);
+            getSupportActionBar().setHomeAsUpIndicator(upArrow);
         }
 
         if (mScroller != null) {
@@ -203,6 +189,22 @@ public class TourDetailActivity extends AppCompatActivity {
 
         mToolbar.setTitleTextColor(Color.argb(255,255,255,255));
         mToolbar.setBackgroundColor(Color.argb((int)(opacity * 255), 255, 255, 255));
+    }
+
+    private void settingBtnBottom(){
+        if (status.equals("fragment")) {
+            binding.tourDetailBtnListTraveler.setVisibility(View.VISIBLE);
+            binding.tourDetailBtnBook.setVisibility(View.GONE);
+        }
+
+        binding.tourDetailBtnListTraveler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TourDetailActivity.this, ListTravelerActivity.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

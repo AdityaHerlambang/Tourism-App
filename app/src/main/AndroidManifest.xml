@@ -14,19 +14,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:replace="android:icon">
-        <activity android:name=".TentangAplikasiActivity"></activity>
+        <activity android:name=".ListTravelerActivity"></activity>
+        <activity android:name=".TentangAplikasiActivity" />
         <activity android:name=".RegisterTrevelerActivity" />
         <activity android:name=".RegisterProviderActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".TourDetailActivity" />
         <activity android:name=".ProviderActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".TourActivity" />
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <activity android:name=".ChooseRegisterActivity" />
