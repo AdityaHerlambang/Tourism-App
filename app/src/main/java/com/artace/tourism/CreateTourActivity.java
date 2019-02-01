@@ -245,8 +245,8 @@ public class CreateTourActivity extends AppCompatActivity {
                 params.put("activity",binding.createTourActivity.getText().toString());
                 params.put("minimum_person",binding.createTourMinimumPerson.getText().toString());
                 params.put("preperation",binding.createTourPreperation.getText().toString());
-                params.put("location_latitude",null);
-                params.put("location_longitude",null);
+                params.put("location_latitude","");
+                params.put("location_longitude","");
                 params.put("nearest_airport",binding.createTourNearestAirport.getText().toString());
                 params.put("verified_by_admin","1");
                 params.put("adult_price",binding.createTourAdultPrice.getText().toString());

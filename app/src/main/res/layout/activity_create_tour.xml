@@ -261,7 +261,7 @@
                             android:layout_marginTop="@dimen/form_content_marginTop"
                             android:ems="10"
                             android:hint="Minimum Person"
-                            android:inputType="text"
+                            android:inputType="number"
                             android:padding="@dimen/form_content_padding"
                             android:textColorHint="@color/colorSecondaryText" />
 
@@ -343,7 +343,7 @@
                             android:layout_marginTop="@dimen/form_content_marginTop"
                             android:ems="10"
                             android:hint="Adult Price"
-                            android:inputType="text"
+                            android:inputType="number"
                             android:padding="@dimen/form_content_padding"
                             android:textColorHint="@color/colorSecondaryText" />
 
@@ -371,7 +371,7 @@
                             android:layout_marginTop="@dimen/form_content_marginTop"
                             android:ems="10"
                             android:hint="Child Price"
-                            android:inputType="text"
+                            android:inputType="number"
                             android:padding="@dimen/form_content_padding"
                             android:textColorHint="@color/colorSecondaryText" />
 
@@ -395,7 +395,7 @@
                         android:layout_marginTop="@dimen/form_content_marginTop"
                         android:ems="10"
                         android:hint="Max Capacity"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:padding="@dimen/form_content_padding"
                         android:textColorHint="@color/colorSecondaryText" />
 
@@ -415,7 +415,7 @@
                         android:layout_marginTop="@dimen/form_content_marginTop"
                         android:ems="10"
                         android:hint="Duration Hour"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:padding="@dimen/form_content_padding"
                         android:textColorHint="@color/colorSecondaryText" />
 
@@ -434,8 +434,8 @@
                         android:layout_height="@dimen/form_content_height"
                         android:layout_marginTop="@dimen/form_content_marginTop"
                         android:ems="10"
-                        android:hint="Child Price"
-                        android:inputType="text"
+                        android:hint="Duration Day"
+                        android:inputType="number"
                         android:padding="@dimen/form_content_padding"
                         android:textColorHint="@color/colorSecondaryText" />
 
