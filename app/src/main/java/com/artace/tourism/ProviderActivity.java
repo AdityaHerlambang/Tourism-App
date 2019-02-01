@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -16,15 +17,29 @@ import android.view.MenuItem;
 
 import com.artace.tourism.utils.DrawerMenu;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class ProviderActivity extends AppCompatActivity {
 
     BottomNavigationView mBottomNavigation;
     Toolbar mToolbar;
+    protected ActionBarDrawerToggle drawerToggle;
+    String title = "Profile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_provider);
+
+        if(getIntent().getExtras() != null){
+            Bundle extras = getIntent().getExtras();
+            if(extras.getString("from").equals("Register")){
+                SweetAlertDialog sDialog = new SweetAlertDialog(ProviderActivity.this, SweetAlertDialog.SUCCESS_TYPE);
+                sDialog.setTitle("Success !");
+                sDialog.setContentText("You are now registered and logged in");
+                sDialog.show();
+            }
+        }
 
         initDrawerMenu();
 
@@ -46,14 +61,17 @@ public class ProviderActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.navigation_profile:
                         fragment = new ProviderProfileFragment();
+                        title = "Profile";
                         break;
 
                     case R.id.navigation_tour:
                         fragment = new ProviderTourFragment();
+                        title = "List Tour";
                         break;
 
                     case R.id.navigation_confirm:
                         fragment = new ProviderConfirmFragment();
+                        title = "Confirmation";
                         break;
                 }
 
@@ -62,7 +80,7 @@ public class ProviderActivity extends AppCompatActivity {
         });
     }
 
-    private boolean replaceFragment (Fragment fragment){
+    public boolean replaceFragment (Fragment fragment){
         String backStateName =  fragment.getClass().getName();
         String fragmentTag = backStateName;
 
@@ -83,10 +101,11 @@ public class ProviderActivity extends AppCompatActivity {
         mToolbar = findViewById(R.id.activity_provider_toolbar);
         this.setSupportActionBar(mToolbar);
         ActionBar ab = this.getSupportActionBar();
-        ab.setTitle("");
+        ab.setTitle(title);
 //
         DrawerMenu drawer = new DrawerMenu();
         drawer.createDrawer(this, this, mToolbar);
+
     }
 
     private boolean loadFragment(Fragment fragment) {

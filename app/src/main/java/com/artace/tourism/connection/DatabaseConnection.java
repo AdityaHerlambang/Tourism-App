@@ -3,10 +3,10 @@ package com.artace.tourism.connection;
 public class DatabaseConnection {
 
     // GLOBAL
-//    public static String BASE_URL = "http://tourismapi.000webhostapp.com/";
+    public static String BASE_URL = "http://tourismapi.000webhostapp.com/";
 
     //Local
-    public static String BASE_URL = "http://192.168.43.48:8000/";
+//    public static String BASE_URL = "http://192.168.43.48:8000/";
 
 //    public static String BASE_URL = "http://10.10.22.199:8000/";
 
@@ -47,6 +47,10 @@ public class DatabaseConnection {
 
     public static String bookedTour = BASE_URL+"tour/booked";
 
+    public static String CREATE_TOUR = BASE_URL+"provider/createtour";
+    public static String UPDATE_TOUR = BASE_URL+"provider/updatetour";
+    public static String DELETE_TOUR = BASE_URL+"provider/deletetour";
+
 
     public static String getProfileProvider(String id) {
         return PROFILE_PROVIDER+"/"+id;
@@ -62,6 +66,18 @@ public class DatabaseConnection {
 
     public static String getTrevelerPerTourProvider(String id) {
         return TREVELER_PER_TOUR_PROVIDER+"/"+id;
+    }
+
+    public static String getCreateTour() {
+        return CREATE_TOUR;
+    }
+
+    public static String getUpdateTour(String id) {
+        return UPDATE_TOUR+"/"+id;
+    }
+
+    public static String getDeleteTour(String id) {
+        return DELETE_TOUR+"/"+id;
     }
 
     public static String getConfirmationTraveler() {

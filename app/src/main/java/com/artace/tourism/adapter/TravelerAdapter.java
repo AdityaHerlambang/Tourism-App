@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,6 +20,8 @@ import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
 import com.android.volley.Request;
+import com.artace.tourism.ProviderActivity;
+import com.artace.tourism.ProviderConfirmFragment;
 import com.artace.tourism.R;
 import com.artace.tourism.TourDetailActivity;
 import com.artace.tourism.connection.DatabaseConnection;
@@ -33,6 +38,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
+import mehdi.sakout.fancybuttons.FancyButton;
 
 public class TravelerAdapter extends RecyclerView.Adapter<TravelerAdapter.MyViewHolder> {
 
@@ -55,47 +63,134 @@ public class TravelerAdapter extends RecyclerView.Adapter<TravelerAdapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         data = dataList.get(position);
 
         holder.mName.setText(data.getFirstname()+" "+data.getLastname());
-        holder.mStartDate.setText(data.getTour_start_date());
-        holder.mAdultQty.setText(Integer.toString(data.getAdult_qty()));
-        holder.mChildQty.setText(Integer.toString(data.getChild_qty()));
-        holder.mTour.setText(data.getTour_name());
+        holder.mStartDate.setText(": "+data.getTour_start_date());
+        holder.mAdultQty.setText(": "+Integer.toString(data.getAdult_qty()));
+        holder.mChildQty.setText(": "+Integer.toString(data.getChild_qty()));
+        holder.mTour.setText(": "+data.getTour_name());
+        holder.mCard.setTag(position);
+        if (data.getConfirmation() == 1){
+            holder.mBtnCancel.setVisibility(View.VISIBLE);
+            holder.mBtnReject.setVisibility(View.GONE);
+            holder.mBtnConfirm.setVisibility(View.GONE);
 
+            holder.mCard.setBackgroundColor(context.getResources().getColor(R.color.accent));
+        }
+        else if (data.getConfirmation() == 0){
+            holder.mBtnCancel.setVisibility(View.GONE);
+            holder.mBtnReject.setVisibility(View.VISIBLE);
+            holder.mBtnConfirm.setVisibility(View.VISIBLE);
+
+            holder.mCard.setBackgroundColor(context.getResources().getColor(R.color.gray_darker));
+        }
+        holder.mBtnConfirm.setTag(position);
         holder.mBtnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int tag = (Integer)view.getTag();
+                data = dataList.get(tag);
                 Map<String,String> params = new HashMap<String, String>();
+
                 params.put("id",Integer.toString(data.getId()));
                 params.put("status","Confirmation");
                 String url = DatabaseConnection.getConfirmationTraveler();
 
-                Log.d(TAG,params.toString());
-                Log.d(TAG,url);
-
+                holder.mBtnCancel.setVisibility(View.VISIBLE);
+                holder.mBtnReject.setVisibility(View.GONE);
+                holder.mBtnConfirm.setVisibility(View.GONE);
+                holder.mCard.setBackgroundColor(context.getResources().getColor(R.color.accent));
                 loadResponseData(params, url);
             }
         });
-
+        holder.mBtnReject.setTag(position);
         holder.mBtnReject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Map<String,String> params = new HashMap<String, String>();
+                int tag = (Integer)view.getTag();
+                data = dataList.get(tag);
+
+                final Map<String,String> params = new HashMap<String, String>();
                 params.put("id",Integer.toString(data.getId()));
                 params.put("status","Rejected");
-                String url = DatabaseConnection.getConfirmationTraveler();
+                final String url = DatabaseConnection.getConfirmationTraveler();
 
-                Log.d(TAG,params.toString());
-                Log.d(TAG,url);
+                new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Are you sure?")
+                        .setContentText("once rejected will no longer be accepted")
+                        .setCancelText("No,cancel!")
+                        .setConfirmText("Yes,rejected!")
+                        .showCancelButton(true)
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                loadResponseData(params, url);
+                                dataList.remove(position);
+                                notifyItemRemoved(position);
 
-                loadResponseData(params, url);
+                                sDialog.dismissWithAnimation();
+                            }
+                        })
+                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.dismissWithAnimation();
+                            }
+                        })
+                        .show();
+            }
+        });
+        holder.mBtnCancel.setTag(position);
+        holder.mBtnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int tag = (Integer)view.getTag();
+                data = dataList.get(tag);
+
+                final Map<String,String> params = new HashMap<String, String>();
+                params.put("id",Integer.toString(data.getId()));
+                params.put("status","Cancel");
+                final String url = DatabaseConnection.getConfirmationTraveler();
+
+                new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Are you sure?")
+                        .setCancelText("No")
+                        .setConfirmText("Yes")
+                        .showCancelButton(true)
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                loadResponseData(params, url);
+
+                                holder.mBtnCancel.setVisibility(View.GONE);
+                                holder.mBtnReject.setVisibility(View.VISIBLE);
+                                holder.mBtnConfirm.setVisibility(View.VISIBLE);
+                                holder.mCard.setBackgroundColor(context.getResources().getColor(R.color.gray_darker));
+
+                                sDialog.dismissWithAnimation();
+                            }
+                        })
+                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.dismissWithAnimation();
+                            }
+                        })
+                        .show();
+
             }
         });
     }
 
     public void loadResponseData(Map<String,String> params, String url){
+        Log.e(TAG,params.toString());
+        Log.e(TAG,url);
+        final SweetAlertDialog sDialog = new SweetAlertDialog(context,SweetAlertDialog.PROGRESS_TYPE);
+        sDialog.setTitle("Processing. . .");
+        sDialog.show();
+
         StringPostRequest strReq = new StringPostRequest();
         strReq.sendRequest(Request.Method.POST,context, params, url, new VolleyResponseListener() {
             @Override
@@ -109,6 +204,7 @@ public class TravelerAdapter extends RecyclerView.Adapter<TravelerAdapter.MyView
                             try {
                                 JSONObject obj = jsonArray.getJSONObject(i);
                                 Log.e(TAG, obj.toString());
+                                sDialog.dismissWithAnimation();
                                 if (obj.getString("status").equals("1")){
                                     Log.e(TAG, "sucess");
                                 }
@@ -120,6 +216,8 @@ public class TravelerAdapter extends RecyclerView.Adapter<TravelerAdapter.MyView
                                 Log.e(TAG,e.getMessage());
                             }finally {
                                 //Notify adapter about data changes
+//                                notifyItemChanged(i);
+
                             }
                         }
                     } catch (Exception e) {
@@ -143,7 +241,8 @@ public class TravelerAdapter extends RecyclerView.Adapter<TravelerAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView mName, mTour, mAdultQty, mChildQty, mStartDate;
-        private Button mBtnConfirm, mBtnReject;
+        private FancyButton mBtnConfirm, mBtnReject, mBtnCancel;
+        private CardView mCard;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -155,6 +254,9 @@ public class TravelerAdapter extends RecyclerView.Adapter<TravelerAdapter.MyView
 
             mBtnConfirm = itemView.findViewById(R.id.provider_confirm_btnConfirmation);
             mBtnReject = itemView.findViewById(R.id.provider_confirm_btnRejected);
+            mBtnCancel = itemView.findViewById(R.id.provider_confirm_btnCancel);
+
+            mCard = itemView.findViewById(R.id.item_provider_confirm_cardView);
         }
     }
 }

@@ -19,7 +19,7 @@
             android:id="@+id/activity_provider_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:theme="@style/CustomActionBar"
+            android:theme="@style/CustomDrawerMenu"
             app:layout_scrollFlags="enterAlways" />
     </android.support.design.widget.AppBarLayout>
 

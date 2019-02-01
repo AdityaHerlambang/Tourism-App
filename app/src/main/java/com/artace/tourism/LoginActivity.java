@@ -139,6 +139,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }else{ //Jika Tour Provider
                         editor.putString("user_id", obj.getString("user_id"));
+                        editor.putString("provider_id", obj.getString("id"));
                         editor.putString("country_id", obj.getString("country_id"));
                         editor.putString("name", obj.getString("name"));
                         editor.putString("phone", obj.getString("phone"));

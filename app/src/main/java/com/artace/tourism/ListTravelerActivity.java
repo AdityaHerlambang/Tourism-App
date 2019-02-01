@@ -48,7 +48,7 @@ public class ListTravelerActivity extends AppCompatActivity {
     public void setRecyclerTraveler(){
 
         travelerAdapter = new TravelerAdapter(this, modelTransactionList);
-        binding.listTravelerRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        binding.listTravelerRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         binding.listTravelerRecyclerView.setAdapter(travelerAdapter);
 
         loadDataTraveler();

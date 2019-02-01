@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".CreateTourActivity"
+            xmlns:fancy="http://schemas.android.com/apk/res-auto"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.Toolbar
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/create_tour_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:background="@color/colorPrimary"
+                android:elevation="8dp"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:fillViewport="true"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_content_marginTop"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp">
+                        <ImageView
+                            android:id="@+id/create_tour_viewFoto"
+                            android:layout_width="125dp"
+                            android:layout_height="125dp"
+                            android:layout_centerInParent="true"
+                            android:layout_alignParentTop="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_profile_pic_default" />
+
+                        <Button
+                            android:id="@+id/create_tour_btnFoto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_below="@id/create_tour_viewFoto"
+                            android:layout_centerInParent="true"
+                            android:background="@color/colorAccent"
+                            android:text="browse foto"
+                            android:textColor="@color/colorPrimaryLight"
+                            android:textSize="10dp" />
+                    </RelativeLayout>
+
+                    <!--<net.steamcrafted.materialiconlib.MaterialIconView-->
+                    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--app:materialIcon="email"-->
+                    <!--app:materialIconColor="#000000"-->
+                    <!--app:materialIconSize="28dp"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--/>-->
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_content_marginTop"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/form_textInputLayout_marginRight"
+                        android:layout_marginLeft="@dimen/form_textInputLayout_marginLeft">
+
+                        <EditText
+                            android:textColor="@color/colorPrimaryText"
+                            android:id="@+id/create_tour_country"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/form_content_height"
+                            android:layout_marginTop="@dimen/form_content_marginTop"
+                            android:ems="10"
+                            android:hint="Country"
+                            android:focusable="false"
+                            android:inputType="text"
+                            android:padding="@dimen/form_content_padding"
+                            android:textColorHint="@color/colorSecondaryText" />
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_content_marginTop"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/form_textInputLayout_marginRight"
+                        android:layout_marginLeft="@dimen/form_textInputLayout_marginLeft">
+
+                        <EditText
+                            android:textColor="@color/colorPrimaryText"
+                            android:id="@+id/create_tour_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/form_content_height"
+                            android:layout_marginTop="@dimen/form_content_marginTop"
+                            android:ems="10"
+                            android:hint="Name"
+                            android:inputType="text"
+                            android:padding="@dimen/form_content_padding"
+                            android:textColorHint="@color/colorSecondaryText" />
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_content_marginTop"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/form_textInputLayout_marginRight"
+                        android:layout_marginLeft="@dimen/form_textInputLayout_marginLeft">
+
+                        <EditText
+                            android:textColor="@color/colorPrimaryText"
+                            android:id="@+id/create_tour_location"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/form_content_height"
+                            android:layout_marginTop="@dimen/form_content_marginTop"
+                            android:ems="10"
+                            android:hint="Location"
+                            android:inputType="text"
+                            android:padding="@dimen/form_content_padding"
+                            android:textColorHint="@color/colorSecondaryText" />
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_content_marginTop"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/form_textInputLayout_marginRight"
+                        android:layout_marginLeft="@dimen/form_textInputLayout_marginLeft">
+
+                        <EditText
+                            android:textColor="@color/colorPrimaryText"
+                            android:id="@+id/create_tour_shortDescription"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/form_content_height"
+                            android:layout_marginTop="@dimen/form_content_marginTop"
+                            android:ems="10"
+                            android:hint="Short Description"
+                            android:inputType="text"
+                            android:padding="@dimen/form_content_padding"
+                            android:textColorHint="@color/colorSecondaryText" />
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_content_marginTop"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/form_textInputLayout_marginRight"
+                        android:layout_marginLeft="@dimen/form_textInputLayout_marginLeft">
+
+                        <EditText
+                            android:textColor="@color/colorPrimaryText"
+                            android:id="@+id/create_tour_overview"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/form_content_height"
+                            android:layout_marginTop="@dimen/form_content_marginTop"
+                            android:ems="10"
+                            android:hint="Overview"
+                            android:inputType="text"
+                            android:padding="@dimen/form_content_padding"
+                            android:textColorHint="@color/colorSecondaryText" />
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_content_marginTop"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/user_password_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/form_textInputLayout_marginRight"
+                        android:layout_marginLeft="@dimen/form_textInputLayout_marginLeft">
+
+                        <EditText
+                            android:textColor="@color/colorPrimaryText"
+                            android:id="@+id/create_tour_activity"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/form_content_height"
+                            android:layout_marginTop="@dimen/form_content_marginTop"
+                            android:ems="10"
+                            android:hint="Activity"
+                            android:inputType="text"
+                            android:padding="@dimen/form_content_padding"
+                            android:textColorHint="@color/colorSecondaryText" />
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_content_marginTop"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/form_textInputLayout_marginRight"
+                        android:layout_marginLeft="@dimen/form_textInputLayout_marginLeft">
+
+                        <EditText
+                            android:textColor="@color/colorPrimaryText"
+                            android:id="@+id/create_tour_minimumPerson"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/form_content_height"
+                            android:layout_marginTop="@dimen/form_content_marginTop"
+                            android:ems="10"
+                            android:hint="Minimum Person"
+                            android:inputType="text"
+                            android:padding="@dimen/form_content_padding"
+                            android:textColorHint="@color/colorSecondaryText" />
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_content_marginTop"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/form_textInputLayout_marginRight"
+                        android:layout_marginLeft="@dimen/form_textInputLayout_marginLeft">
+
+                        <EditText
+                            android:textColor="@color/colorPrimaryText"
+                            android:id="@+id/create_tour_Preperation"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/form_content_height"
+                            android:layout_marginTop="@dimen/form_content_marginTop"
+                            android:ems="10"
+                            android:hint="Preperation"
+                            android:inputType="number"
+                            android:padding="@dimen/form_content_padding"
+                            android:textColorHint="@color/colorSecondaryText" />
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_content_marginTop"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/form_textInputLayout_marginRight"
+                        android:layout_marginLeft="@dimen/form_textInputLayout_marginLeft">
+
+                        <EditText
+                            android:textColor="@color/colorPrimaryText"
+                            android:id="@+id/create_tour_nearestAirport"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/form_content_height"
+                            android:layout_marginTop="@dimen/form_content_marginTop"
+                            android:ems="10"
+                            android:hint="Nearest Airport"
+                            android:inputType="text"
+                            android:padding="@dimen/form_content_padding"
+                            android:textColorHint="@color/colorSecondaryText" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_content_marginTop"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/form_textInputLayout_marginRight"
+                        android:layout_marginLeft="@dimen/form_textInputLayout_marginLeft">
+
+                        <EditText
+                            android:textColor="@color/colorPrimaryText"
+                            android:id="@+id/create_tour_adultPrice"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/form_content_height"
+                            android:layout_marginTop="@dimen/form_content_marginTop"
+                            android:ems="10"
+                            android:hint="Adult Price"
+                            android:inputType="text"
+                            android:padding="@dimen/form_content_padding"
+                            android:textColorHint="@color/colorSecondaryText" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_content_marginTop"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/form_textInputLayout_marginRight"
+                        android:layout_marginLeft="@dimen/form_textInputLayout_marginLeft">
+
+                        <EditText
+                            android:textColor="@color/colorPrimaryText"
+                            android:id="@+id/create_tour_childPrice"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/form_content_height"
+                            android:layout_marginTop="@dimen/form_content_marginTop"
+                            android:ems="10"
+                            android:hint="Child Price"
+                            android:inputType="text"
+                            android:padding="@dimen/form_content_padding"
+                            android:textColorHint="@color/colorSecondaryText" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+
+
+                </LinearLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/form_textInputLayout_marginRight"
+                    android:layout_marginLeft="@dimen/form_textInputLayout_marginLeft">
+
+                    <EditText
+                        android:textColor="@color/colorPrimaryText"
+                        android:id="@+id/create_tour_maxCapacity"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/form_content_height"
+                        android:layout_marginTop="@dimen/form_content_marginTop"
+                        android:ems="10"
+                        android:hint="Max Capacity"
+                        android:inputType="text"
+                        android:padding="@dimen/form_content_padding"
+                        android:textColorHint="@color/colorSecondaryText" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/form_textInputLayout_marginRight"
+                    android:layout_marginLeft="@dimen/form_textInputLayout_marginLeft">
+
+                    <EditText
+                        android:textColor="@color/colorPrimaryText"
+                        android:id="@+id/create_tour_durationHour"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/form_content_height"
+                        android:layout_marginTop="@dimen/form_content_marginTop"
+                        android:ems="10"
+                        android:hint="Duration Hour"
+                        android:inputType="text"
+                        android:padding="@dimen/form_content_padding"
+                        android:textColorHint="@color/colorSecondaryText" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/form_textInputLayout_marginRight"
+                    android:layout_marginLeft="@dimen/form_textInputLayout_marginLeft">
+
+                    <EditText
+                        android:textColor="@color/colorPrimaryText"
+                        android:id="@+id/create_tour_durationDay"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/form_content_height"
+                        android:layout_marginTop="@dimen/form_content_marginTop"
+                        android:ems="10"
+                        android:hint="Child Price"
+                        android:inputType="text"
+                        android:padding="@dimen/form_content_padding"
+                        android:textColorHint="@color/colorSecondaryText" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <mehdi.sakout.fancybuttons.FancyButton
+                    android:id="@+id/create_tour_btn_submit"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/big_button_height"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="100dp"
+                    android:elevation="2dp"
+                    android:padding="8dp"
+                    android:textSize="@dimen/big_button_fontSize"
+                    fancy:fb_defaultColor="@color/colorAccent"
+                    fancy:fb_fontIconResource="\uf0c7"
+                    fancy:fb_iconPosition="left"
+                    fancy:fb_radius="30dp"
+                    fancy:fb_text="Save"
+                    fancy:fb_textColor="#FFFFFF" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</layout>

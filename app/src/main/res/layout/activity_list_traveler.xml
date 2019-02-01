@@ -11,7 +11,7 @@
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/list_traveler_appBarLayout"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@null"
             android:elevation="6dp"
@@ -22,19 +22,21 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/list_traveler_toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:theme="@style/CustomActionBar"
+                android:layout_height="match_parent"
+                android:theme="@style/CustomDrawerMenu"
                 app:layout_scrollFlags="enterAlways" />
         </android.support.design.widget.AppBarLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/list_traveler_RecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/list_traveler_appBarLayout">
 
         </android.support.v7.widget.RecyclerView>
 

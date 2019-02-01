@@ -109,6 +109,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
     private void setComponentView(){
 
         this.setSupportActionBar(binding.toolbar);
@@ -148,7 +150,12 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
-            }else{
+            }
+            else if (sharedpreferences.getString("role_id","").equals("2")){
+                Intent intent = new Intent(MainActivity.this, ProviderActivity.class);
+                startActivity(intent);
+            }
+            else{
                 binding.cardIntro.setVisibility(View.GONE);
             }
         }

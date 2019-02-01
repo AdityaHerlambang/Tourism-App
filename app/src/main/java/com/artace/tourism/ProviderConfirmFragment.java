@@ -18,6 +18,7 @@ import com.android.volley.Request;
 import com.artace.tourism.adapter.TourAdapter;
 import com.artace.tourism.adapter.TravelerAdapter;
 import com.artace.tourism.connection.DatabaseConnection;
+import com.artace.tourism.constant.Field;
 import com.artace.tourism.model.ModelTour;
 import com.artace.tourism.model.ModelTransaction;
 import com.artace.tourism.utils.StringPostRequest;
@@ -112,8 +113,8 @@ public class ProviderConfirmFragment extends Fragment {
     }
 
     public void loadDataTraveler(){
-        SharedPreferences sharedpreferences = getActivity().getSharedPreferences("True", Context.MODE_PRIVATE);
-        String idProvider = sharedpreferences.getString("id",null);
+        SharedPreferences sharedpreferences = getActivity().getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
+        String idProvider = sharedpreferences.getString("provider_id",null);
         url = DatabaseConnection.getTrevelerProvider(idProvider);
 
         Map<String,String> params = new HashMap<String, String>();
@@ -138,8 +139,9 @@ public class ProviderConfirmFragment extends Fragment {
                                         , obj.getInt("country_id"), obj.getString("tour_name"), obj.getString("denied_reason"), obj.getString("tour_start_date") ,
                                         obj.getString("firstname") , obj.getString("lastname") , obj.getString("country_name"), obj.getString("phone_number"));
 
-                                dataListTraveler.add(data);
+                                    dataListTraveler.add(data);
 
+                                Log.e(TAG, dataListTraveler.toString());
                             } catch (Exception e) {
                                 Log.e(TAG,e.getMessage());
                             }finally {

@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.artace.tourism.connection.DatabaseConnection;
+import com.artace.tourism.constant.Field;
 import com.artace.tourism.model.ModelProvider;
 import com.artace.tourism.utils.StringPostRequest;
 import com.artace.tourism.utils.VolleyResponseListener;
@@ -100,8 +101,9 @@ public class ProviderProfileFragment extends Fragment {
     }
 
     private void getData(){
-        SharedPreferences sharedpreferences = getActivity().getSharedPreferences("True", Context.MODE_PRIVATE);
-        String idProvider = sharedpreferences.getString("id",null);
+        SharedPreferences sharedpreferences = getActivity().getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
+
+        String idProvider = sharedpreferences.getString("provider_id",null);
 
         Map<String,String> params = new HashMap<String, String>();
         params.put("emptyvalue","emptyvalue");

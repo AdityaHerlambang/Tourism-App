@@ -1,9 +1,11 @@
 package com.artace.tourism;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +18,7 @@ import android.widget.FrameLayout;
 import com.android.volley.Request;
 import com.artace.tourism.adapter.TourAdapter;
 import com.artace.tourism.connection.DatabaseConnection;
+import com.artace.tourism.constant.Field;
 import com.artace.tourism.model.ModelTour;
 import com.artace.tourism.utils.StringPostRequest;
 import com.artace.tourism.utils.VolleyResponseListener;
@@ -53,6 +56,7 @@ public class ProviderTourFragment extends Fragment {
     List<ModelTour> dataListTours = new ArrayList<ModelTour>();
     RecyclerView toursRecyclerView;
     FrameLayout rootView;
+    FloatingActionButton fabPlus;
 
     private OnFragmentInteractionListener mListener;
 
@@ -94,7 +98,19 @@ public class ProviderTourFragment extends Fragment {
 //        return inflater.inflate(R.layout.fragment_provider_tour, container, false);
         rootView = (FrameLayout) inflater.inflate(R.layout.fragment_provider_tour, container, false);
         setRecyclerTour();
+        actionFabPlus();
         return rootView;
+    }
+
+    public void actionFabPlus(){
+        fabPlus = rootView.findViewById(R.id.provider_tour_plusTour);
+        fabPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), CreateTourActivity.class);
+                getContext().startActivity(intent);
+            }
+        });
     }
 
     public void setRecyclerTour(){
@@ -107,8 +123,8 @@ public class ProviderTourFragment extends Fragment {
     }
 
     public void loadDataTour(){
-        SharedPreferences sharedpreferences = getActivity().getSharedPreferences("True", Context.MODE_PRIVATE);
-        String idProvider = sharedpreferences.getString("id",null);
+        SharedPreferences sharedpreferences = getActivity().getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
+        String idProvider = sharedpreferences.getString("provider_id",null);
         url = DatabaseConnection.getTourProvider(idProvider);
 
         Map<String,String> params = new HashMap<String, String>();

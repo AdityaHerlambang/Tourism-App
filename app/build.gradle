@@ -39,6 +39,9 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
     implementation 'com.jjoe64:graphview:4.2.2'
 
+    //MultiSelectDialog
+    implementation 'com.github.abumoallim:Android-Multi-Select-Dialog:v1.9'
+
     //Expandable Layout
     implementation 'net.cachapa.expandablelayout:expandablelayout:2.9.2'
     //spinner
@@ -71,9 +74,6 @@ dependencies {
 
     //Card Slider
     implementation 'com.ramotion.cardslider:card-slider:0.3.0'
-
-    //MultiSelectDialog
-    implementation 'com.github.abumoallim:Android-Multi-Select-Dialog:v1.9'
 
     //Material Icon View
     implementation 'net.steamcrafted:materialiconlib:1.1.5'
