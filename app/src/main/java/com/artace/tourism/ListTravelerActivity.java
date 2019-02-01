@@ -3,6 +3,9 @@ package com.artace.tourism;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -40,6 +43,18 @@ public class ListTravelerActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
+
+        binding.listTravelerToolbar.setTitle("List Traveler");
+        setSupportActionBar(binding.listTravelerToolbar);
+        binding.listTravelerToolbar.setTitleTextColor(getColor(R.color.primary_dark));
+
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+            upArrow.setColorFilter(Color.argb(255,0,0,0), PorterDuff.Mode.SRC_ATOP);
+            getSupportActionBar().setHomeAsUpIndicator(upArrow);
+        }
 
         setRecyclerTraveler();
     }
@@ -104,6 +119,13 @@ public class ListTravelerActivity extends AppCompatActivity {
                 Log.e(TAG,"Ada ERROR : "+message);
             }
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        onBackPressed();
+        return true;
     }
 
 }

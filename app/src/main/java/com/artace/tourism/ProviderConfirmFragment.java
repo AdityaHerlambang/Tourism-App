@@ -138,8 +138,9 @@ public class ProviderConfirmFragment extends Fragment {
                                 obj.getInt("guest_id"), obj.getInt("adult_qty"), obj.getInt("child_qty"), obj.getInt("confirmation_status")
                                         , obj.getInt("country_id"), obj.getString("tour_name"), obj.getString("denied_reason"), obj.getString("tour_start_date") ,
                                         obj.getString("firstname") , obj.getString("lastname") , obj.getString("country_name"), obj.getString("phone_number"));
-
+                                if (data.getConfirmation() != 2){
                                     dataListTraveler.add(data);
+                                }
 
                                 Log.e(TAG, dataListTraveler.toString());
                             } catch (Exception e) {

@@ -62,16 +62,19 @@ public class ProviderActivity extends AppCompatActivity {
                     case R.id.navigation_profile:
                         fragment = new ProviderProfileFragment();
                         title = "Profile";
+                        mToolbar.setTitle(title);
                         break;
 
                     case R.id.navigation_tour:
                         fragment = new ProviderTourFragment();
                         title = "List Tour";
+                        mToolbar.setTitle(title);
                         break;
 
                     case R.id.navigation_confirm:
                         fragment = new ProviderConfirmFragment();
                         title = "Confirmation";
+                        mToolbar.setTitle(title);
                         break;
                 }
 
@@ -99,9 +102,8 @@ public class ProviderActivity extends AppCompatActivity {
 
     private void initDrawerMenu(){
         mToolbar = findViewById(R.id.activity_provider_toolbar);
+        mToolbar.setTitleTextColor(getColor(R.color.primary_dark));
         this.setSupportActionBar(mToolbar);
-        ActionBar ab = this.getSupportActionBar();
-        ab.setTitle(title);
 //
         DrawerMenu drawer = new DrawerMenu();
         drawer.createDrawer(this, this, mToolbar);

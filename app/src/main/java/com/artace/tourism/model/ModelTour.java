@@ -12,6 +12,7 @@ public class ModelTour {
     String nearest_airport;
     String country;
     String customStatus;
+    String status;
     String category, status_popularity;
     int verified_by_admin;
     double adult_price, child_price;
@@ -22,7 +23,7 @@ public class ModelTour {
     public ModelTour() {
     }
 
-    public ModelTour(String id, String country_id, String tour_provider_id, String name, String location, String short_description, String overview, String activity, int minimum_person, String preparation, String image, String location_latitude, String location_longitude, String nearest_airport, String status_popularity, int verified_by_admin, double adult_price, double child_price, int max_capacity, int duration_hour, int duration_day) {
+    public ModelTour(String id, String country_id, String tour_provider_id, String name, String location, String short_description, String overview, String activity, int minimum_person, String preparation, String image, String location_latitude, String location_longitude, String nearest_airport, String country, String customStatus, String status, String category, String status_popularity, int verified_by_admin, double adult_price, double child_price) {
         this.id = id;
         this.country_id = country_id;
         this.tour_provider_id = tour_provider_id;
@@ -37,13 +38,14 @@ public class ModelTour {
         this.location_latitude = location_latitude;
         this.location_longitude = location_longitude;
         this.nearest_airport = nearest_airport;
+        this.country = country;
+        this.customStatus = customStatus;
+        this.status = status;
+        this.category = category;
         this.status_popularity = status_popularity;
         this.verified_by_admin = verified_by_admin;
         this.adult_price = adult_price;
         this.child_price = child_price;
-        this.max_capacity = max_capacity;
-        this.duration_hour = duration_hour;
-        this.duration_day = duration_day;
     }
 
     public String getStatus_popularity() {
@@ -236,5 +238,13 @@ public class ModelTour {
 
     public void setDuration_day(int duration_day) {
         this.duration_day = duration_day;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

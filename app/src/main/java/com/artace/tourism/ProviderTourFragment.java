@@ -154,7 +154,11 @@ public class ProviderTourFragment extends Fragment {
                                 modelTour.setAdult_price(obj.getInt("adult_price"));
                                 modelTour.setLocation(obj.getString("location"));
                                 modelTour.setCustomStatus("fragment");
-                                dataListTours.add(modelTour);
+                                modelTour.setStatus(obj.getString("status"));
+                                if (modelTour.getStatus().equals("1")){
+                                    dataListTours.add(modelTour);
+                                }
+
 
                             } catch (Exception e) {
                                 Log.e(TAG,e.getMessage());
