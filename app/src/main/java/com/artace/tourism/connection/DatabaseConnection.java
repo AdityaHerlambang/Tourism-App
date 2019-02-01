@@ -8,6 +8,8 @@ public class DatabaseConnection {
     //Local
     public static String BASE_URL = "http://192.168.43.48:8000/";
 
+//    public static String BASE_URL = "http://10.10.22.199:8000/";
+
     //get country
     public static String COUNTRY_URL = BASE_URL+"tour/country";
 
@@ -39,6 +41,11 @@ public class DatabaseConnection {
     public static String LOGIN = BASE_URL+"login";
 
     public static String registerTraveller = BASE_URL+"login/registerguest";
+    public static String registerProvider= BASE_URL+"login/registerprovider";
+
+    public static String makeBooking = BASE_URL+"booking/makebooking";
+
+    public static String bookedTour = BASE_URL+"tour/booked";
 
 
     public static String getProfileProvider(String id) {
@@ -117,5 +124,17 @@ public class DatabaseConnection {
 
     public static String getRegisterTraveller() {
         return registerTraveller;
+    }
+
+    public static String getMakeBooking() {
+        return makeBooking;
+    }
+
+    public static String getBookedTour() {
+        return bookedTour;
+    }
+
+    public static String getRegisterProvider() {
+        return registerProvider;
     }
 }

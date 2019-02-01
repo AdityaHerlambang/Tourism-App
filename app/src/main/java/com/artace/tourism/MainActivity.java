@@ -91,11 +91,19 @@ public class MainActivity extends AppCompatActivity {
 
         if(getIntent().getExtras() != null){
             Bundle extras = getIntent().getExtras();
-            if(extras.getString("from").equals("Register")){
-                SweetAlertDialog sDialog = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.SUCCESS_TYPE);
-                sDialog.setTitle("Success !");
-                sDialog.setContentText("You are now registered and logged in");
-                sDialog.show();
+            if(extras.getString("from") != null){
+                if(extras.getString("from").equals("Register")){
+                    SweetAlertDialog sDialog = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.SUCCESS_TYPE);
+                    sDialog.setTitle("Success !");
+                    sDialog.setContentText("You are now registered and logged in");
+                    sDialog.show();
+                }
+                if(extras.getString("from").equals("Booking")){
+                    SweetAlertDialog sDialog = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.SUCCESS_TYPE);
+                    sDialog.setTitle("Success !");
+                    sDialog.setContentText("You just booked a Tour. Please wait until the tour provider approve your booking.");
+                    sDialog.show();
+                }
             }
         }
 
@@ -110,6 +118,20 @@ public class MainActivity extends AppCompatActivity {
         DrawerMenu drawer = new DrawerMenu();
         drawer.createDrawer(this, this, binding.toolbar);
 
+        binding.agriculture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,TourActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("tipe","1");
+                extras.putString("id","1");
+                extras.putString("name","Agriculture");
+                extras.putString("image","https://www.plasticseurope.org/application/files/6615/1274/2893/5.6._aaheader.png");
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        });
+
 
         // Cek session login jika TRUE maka langsung buka MainActivity
         sharedpreferences = getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
@@ -122,7 +144,8 @@ public class MainActivity extends AppCompatActivity {
                 binding.mainLearnMore.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //TODO : Intent ke booked tour
+                        Intent intent = new Intent(MainActivity.this,BookedTourActivity.class);
+                        startActivity(intent);
                     }
                 });
             }else{

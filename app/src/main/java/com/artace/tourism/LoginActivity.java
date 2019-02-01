@@ -123,6 +123,9 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putString("lastname", obj.getString("lastname"));
                         editor.putString("phone", obj.getString("phone"));
                         editor.putString("email", obj.getString("email"));
+
+                        editor.commit();
+
                         if(extras.getString("from").equals("MainActivity")){ //Jika intent dari Main Activity
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
@@ -140,11 +143,10 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putString("name", obj.getString("name"));
                         editor.putString("phone", obj.getString("phone"));
                         editor.putString("email", obj.getString("email"));
+                        editor.commit();
                         Intent intent = new Intent(LoginActivity.this,ProviderActivity.class);
                         startActivity(intent);
                     }
-
-                    editor.commit();
 
                 } catch (Exception e) {
                     Log.e(TAG,e.getMessage());

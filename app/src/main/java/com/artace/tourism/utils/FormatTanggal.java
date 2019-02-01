@@ -45,6 +45,49 @@ public class FormatTanggal {
         return tanggal+" "+value+" "+tahun;
     }
 
+    public static String english(int tanggal, int bulan, int tahun){
+        String value = "";
+        switch(bulan){
+            case 1 :
+                value = "January";
+                break;
+            case 2 :
+                value = "February";
+                break;
+            case 3 :
+                value = "March";
+                break;
+            case 4 :
+                value = "April";
+                break;
+            case 5 :
+                value = "May";
+                break;
+            case 6 :
+                value = "June";
+                break;
+            case 7 :
+                value = "July";
+                break;
+            case 8 :
+                value = "August";
+                break;
+            case 9 :
+                value = "September";
+                break;
+            case 10 :
+                value = "October";
+                break;
+            case 11 :
+                value = "November";
+                break;
+            case 12 :
+                value = "December";
+                break;
+        }
+        return tanggal+" "+value+" "+tahun;
+    }
+
     public static String bulanTahun(int bulan, int tahun){
         String value = "";
         switch(bulan){

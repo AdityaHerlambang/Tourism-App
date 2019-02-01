@@ -3,6 +3,9 @@ package com.artace.tourism.model;
 public class ModelTransaction {
     int id, tour_id, guest_id, adult_qty, child_qty, confirmation, country_id;
     String tour_name, denied_reason, tour_start_date, firstname, lastname, country_name, phone_number;
+    double price;
+
+    String image, short_description ,name, location;
 
     public ModelTransaction(int id, int tour_id, int guest_id, int adult_qty, int child_qty, int confirmation, int country_id, String tour_name, String denied_reason, String tour_start_date, String firstname, String lastname, String country_name, String phone_number) {
         this.id = id;
@@ -21,7 +24,57 @@ public class ModelTransaction {
         this.phone_number = phone_number;
     }
 
+    public ModelTransaction(int tour_id, String tour_start_date, double price, String image, String short_description, String name, String location) {
+        this.tour_id = tour_id;
+        this.tour_start_date = tour_start_date;
+        this.price = price;
+        this.image = image;
+        this.short_description = short_description;
+        this.name = name;
+        this.location = location;
+    }
+
     public ModelTransaction() {
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getShort_description() {
+        return short_description;
+    }
+
+    public void setShort_description(String short_description) {
+        this.short_description = short_description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public int getId() {

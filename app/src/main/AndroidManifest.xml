@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:replace="android:icon,android:theme">
-        <activity android:name=".BookingActivity"></activity>
+        <activity android:name=".BookedTourActivity"></activity>
+        <activity android:name=".AlreadyBookedActivity" />
+        <activity android:name=".BookingActivity" android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ListTravelerActivity" />
         <activity android:name=".TentangAplikasiActivity" />
         <activity
@@ -23,9 +25,9 @@
         <activity
             android:name=".RegisterProviderActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".LoginActivity" android:windowSoftInputMode="adjustResize"  />
         <activity android:name=".TourDetailActivity" />
-        <activity android:name=".ProviderActivity"></activity>
+        <activity android:name=".ProviderActivity" />
         <activity android:name=".TourActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
