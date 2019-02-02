@@ -29,7 +29,7 @@
         <activity android:name=".TourDetailActivity" />
         <activity android:name=".ProviderActivity" />
         <activity android:name=".TourActivity" />
-        <activity android:name=".CreateTourActivity"/>
+        <activity android:name=".CreateTourActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

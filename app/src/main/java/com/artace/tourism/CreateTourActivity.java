@@ -31,6 +31,7 @@ import com.android.volley.toolbox.Volley;
 import com.artace.tourism.connection.DatabaseConnection;
 import com.artace.tourism.constant.Field;
 import com.artace.tourism.databinding.ActivityCreateTourBinding;
+import com.artace.tourism.model.ModelCountry;
 import com.artace.tourism.utils.StringPostRequest;
 import com.artace.tourism.utils.VolleyMultipartRequest;
 import com.artace.tourism.utils.VolleyResponseListener;
@@ -59,6 +60,8 @@ public class CreateTourActivity extends AppCompatActivity {
     Bitmap bitmapFoto;
 
     String country_id;
+    String imagename;
+    SweetAlertDialog sDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +77,7 @@ public class CreateTourActivity extends AppCompatActivity {
 
         binding.createTourToolbar.setTitle("Create Tour");
         setSupportActionBar(binding.createTourToolbar);
-        binding.createTourToolbar.setTitleTextColor(getColor(R.color.primary_dark));
+        binding.createTourToolbar.setTitleTextColor(getResources().getColor(R.color.primary_dark));
 
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -213,11 +216,11 @@ public class CreateTourActivity extends AppCompatActivity {
         SharedPreferences sharedpreferences = getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
         final String idProvider = sharedpreferences.getString("provider_id",null);
 
-        final SweetAlertDialog sDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        sDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         sDialog.setTitle("Processing...");
         sDialog.show();
 
-        String url = DatabaseConnection.getCreateTour();
+        String url = DatabaseConnection.getUploadImage();
         Log.d(TAG,url);
 
         //Multipart Volley Request
@@ -225,16 +228,10 @@ public class CreateTourActivity extends AppCompatActivity {
                 new Response.Listener<NetworkResponse>() {
                     @Override
                     public void onResponse(NetworkResponse response) {
-                        try {
-                            JSONObject obj = new JSONObject(new String(response.data));
-                            Log.e("inserttour",obj.getString("message"));
-                            sDialog.dismissWithAnimation();
-                            finish();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        finally{
-                        }
+
+                            submitToRealServer();
+
+
                     }
                 },
                 new Response.ErrorListener() {
@@ -251,26 +248,10 @@ public class CreateTourActivity extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
 
-                params.put("country_id",country_id);
-                params.put("tour_provider_id",idProvider);
-                params.put("name",binding.createTourName.getText().toString());
-                params.put("location",binding.createTourLocation.getText().toString());
-                params.put("short_description",binding.createTourShortDescription.getText().toString());
-                params.put("overview",binding.createTourOverview.getText().toString());
-                params.put("activity",binding.createTourActivity.getText().toString());
-                params.put("minimum_person",binding.createTourMinimumPerson.getText().toString());
-                params.put("preperation",binding.createTourPreperation.getText().toString());
-                params.put("location_latitude","");
-                params.put("location_longitude","");
-                params.put("nearest_airport",binding.createTourNearestAirport.getText().toString());
-                params.put("verified_by_admin","1");
-                params.put("adult_price",binding.createTourAdultPrice.getText().toString());
-                params.put("child_price",binding.createTourChildPrice.getText().toString());
-                params.put("max_capacity",binding.createTourMaxCapacity.getText().toString());
-                params.put("duration_hour",binding.createTourDurationHour.getText().toString());
-                params.put("duration_day",binding.createTourDurationDay.getText().toString());
-                params.put("status_popularity","0");
-                params.put("status","1");
+                long timemilis = System.currentTimeMillis();
+                imagename = String.valueOf(timemilis)+".png";
+
+                params.put("filename",imagename);
                 Log.e(TAG, params.toString());
                 return params;
             }
@@ -281,13 +262,59 @@ public class CreateTourActivity extends AppCompatActivity {
             @Override
             protected Map<String, DataPart> getByteData() {
                 Map<String, DataPart> params = new HashMap<>();
-                long imagename = System.currentTimeMillis();
-                params.put("image", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
+                params.put("image", new DataPart(imagename, getFileDataFromDrawable(bitmap)));
                 return params;
             }
         };
         //adding the request to volley
         Volley.newRequestQueue(this).add(volleyMultipartRequest);
+    }
+
+    private void submitToRealServer(){
+        SharedPreferences sharedpreferences = getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
+        final String idProvider = sharedpreferences.getString("provider_id",null);
+        Map<String,String> params = new HashMap<String, String>();
+        params.put("country_id",country_id);
+        params.put("tour_provider_id",idProvider);
+        params.put("name",binding.createTourName.getText().toString());
+        params.put("location",binding.createTourLocation.getText().toString());
+        params.put("short_description",binding.createTourShortDescription.getText().toString());
+        params.put("overview",binding.createTourOverview.getText().toString());
+        params.put("activity",binding.createTourActivity.getText().toString());
+        params.put("minimum_person",binding.createTourMinimumPerson.getText().toString());
+        params.put("preparation",binding.createTourPreparation.getText().toString());
+        params.put("location_latitude","");
+        params.put("location_longitude","");
+        params.put("nearest_airport",binding.createTourNearestAirport.getText().toString());
+        params.put("verified_by_admin","1");
+        params.put("adult_price",binding.createTourAdultPrice.getText().toString());
+        params.put("child_price",binding.createTourChildPrice.getText().toString());
+        params.put("max_capacity",binding.createTourMaxCapacity.getText().toString());
+        params.put("duration_hour",binding.createTourDurationHour.getText().toString());
+        params.put("duration_day",binding.createTourDurationDay.getText().toString());
+        params.put("status_popularity","0");
+        params.put("status","1");
+        params.put("filename",imagename);
+        Log.d(TAG,params.toString());
+
+        String url = DatabaseConnection.getCreateTour();
+        Log.d(TAG,url);
+
+        StringPostRequest strReq = new StringPostRequest();
+        strReq.sendRequest(Request.Method.POST,this, params, url, new VolleyResponseListener() {
+            @Override
+            public void onResponse(String response) {
+
+                sDialog.dismissWithAnimation();
+                finish();
+
+            }
+
+            @Override
+            public void onError(String message) {
+                Log.e(TAG,"Ada ERROR : "+message);
+            }
+        });
     }
 
     private void hideSoftKeyboard(){

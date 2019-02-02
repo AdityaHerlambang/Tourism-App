@@ -282,13 +282,13 @@
 
                         <EditText
                             android:textColor="@color/colorPrimaryText"
-                            android:id="@+id/create_tour_Preperation"
+                            android:id="@+id/create_tour_preparation"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/form_content_height"
                             android:layout_marginTop="@dimen/form_content_marginTop"
                             android:ems="10"
                             android:hint="Preperation"
-                            android:inputType="number"
+                            android:inputType="text"
                             android:padding="@dimen/form_content_padding"
                             android:textColorHint="@color/colorSecondaryText" />
 
@@ -309,7 +309,7 @@
 
                         <EditText
                             android:textColor="@color/colorPrimaryText"
-                            android:id="@+id/create_tour_nearestAirport"
+                            android:id="@+id/create_tour_nearest_airport"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/form_content_height"
                             android:layout_marginTop="@dimen/form_content_marginTop"

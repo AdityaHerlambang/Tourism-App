@@ -4,6 +4,7 @@ public class DatabaseConnection {
 
     // GLOBAL
     public static String BASE_URL = "http://tourismapi.000webhostapp.com/";
+//    public static String BASE_URL = "http://192.168.88.9:8000/";
 
     //Local
 //    public static String BASE_URL = "http://192.168.43.48:8000/";
@@ -50,6 +51,8 @@ public class DatabaseConnection {
     public static String CREATE_TOUR = BASE_URL+"provider/createtour";
     public static String UPDATE_TOUR = BASE_URL+"provider/updatetour";
     public static String DELETE_TOUR = BASE_URL+"provider/deletetour";
+
+    public static String uploadImage = "http://ruangbudayadevelopment.000webhostapp.com/tourism/upload.php";
 
 
     public static String getProfileProvider(String id) {
@@ -152,5 +155,9 @@ public class DatabaseConnection {
 
     public static String getRegisterProvider() {
         return registerProvider;
+    }
+
+    public static String getUploadImage() {
+        return uploadImage;
     }
 }
