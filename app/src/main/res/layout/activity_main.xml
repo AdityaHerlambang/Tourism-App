@@ -46,9 +46,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins"
-                        android:text="Experience Tour Deeper than Ever"
+                        android:text="Your Experience That Deeper Than Ever"
                         android:textColor="@color/colorSecondaryText"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="normal" />
                 </LinearLayout>
 

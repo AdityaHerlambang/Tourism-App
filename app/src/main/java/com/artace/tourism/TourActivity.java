@@ -204,6 +204,7 @@ public class TourActivity extends AppCompatActivity{
         adapterTour = new TourAdapter(this, modelTourList);
         mListTour.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mListTour.setAdapter(adapterTour);
+        mListTour.setNestedScrollingEnabled(true);
 
         if (status.equals("search")){
             loadDataSearch("Tour");

@@ -133,6 +133,97 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        binding.dance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,TourActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("tipe","1");
+                extras.putString("id","2");
+                extras.putString("name","Dance");
+                extras.putString("image","https://www.balispirit.com/assets/images/traditional-dance-in-bali-balispirit750x400.jpg");
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        });
+        binding.cook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,TourActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("tipe","1");
+                extras.putString("id","3");
+                extras.putString("name","Cook");
+                extras.putString("image","https://media.juiceonline.com/wp-content/uploads/2018/07/10123656/mistakes-cooking-edibles-1280x800.jpg");
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        });
+        binding.handycraft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,TourActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("tipe","1");
+                extras.putString("id","4");
+                extras.putString("name","Handycraft");
+                extras.putString("image","https://cdn.pixabay.com/photo/2016/02/17/00/48/handycraft-1204317_960_720.jpg");
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        });
+        binding.itdesign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,TourActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("tipe","1");
+                extras.putString("id","5");
+                extras.putString("name","It / Design");
+                extras.putString("image","https://www.escholar.com/wp-content/uploads/2017/12/technology-785742_960_720.jpg");
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        });
+        binding.herds.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,TourActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("tipe","1");
+                extras.putString("id","6");
+                extras.putString("name","Herds");
+                extras.putString("image","https://upload.wikimedia.org/wikipedia/commons/6/67/Sheep_and_herder_India.jpg");
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        });
+        binding.community.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,TourActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("tipe","1");
+                extras.putString("id","7");
+                extras.putString("name","Community Design");
+                extras.putString("image","https://huminst.osu.edu/sites/huminst.osu.edu/files/Community%20arts.jpg");
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        });
+        binding.others.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,TourActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("tipe","1");
+                extras.putString("id","8");
+                extras.putString("name","Others");
+                extras.putString("image","https://apairandasparediy.com/wp-content/uploads/2015/09/21075568479_d2a7427bf2_b-778x542.jpg");
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        });
 
 
         // Cek session login jika TRUE maka langsung buka MainActivity
