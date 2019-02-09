@@ -22,6 +22,9 @@ import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 public class BookedTourAdapter extends RecyclerView.Adapter<BookedTourAdapter.MyViewHolder> {
@@ -59,8 +62,14 @@ public class BookedTourAdapter extends RecyclerView.Adapter<BookedTourAdapter.My
         holder.mNama.setText(data.getName());
         holder.mLokasi.setText(data.getLocation());
         holder.mShortDesc.setText(data.getShort_description());
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        holder.mDateStart.setText(format.format(data.getTour_start_date()));
+
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy");
+            holder.mDateStart.setText(sdf2.format(sdf.parse(data.getTour_start_date())));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
 
 
